@@ -507,8 +507,8 @@
 
             if (isUsernameValid && isPasswordValid && isEmailValid) {
                 // Simpan data ke localStorage jika perlu
-                localStorage.setItem('tempGrowId', uName);
                 form_regis.submit();
+                localStorage.setItem('tempGrowId', uName);
                 
             }
         });
@@ -546,8 +546,8 @@
             const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
 
             if (isUsernameValid && isPasswordValid) {
-                localStorage.setItem('growId', uName);
                 form_login.submit();
+                localStorage.setItem('growId', uName);
             }
         });
 
