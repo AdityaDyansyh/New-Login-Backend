@@ -27,8 +27,13 @@ app.use(function (req, res, next) {
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, headers: true }));
-
+app.use(rateLimiter({ windowMs: 5 * 60 * 1000, max: 800, headers: true }));
+app.all('/favicon.ico', function(req, res) {
+    
+});
+app.all('/player/register', function(req, res) {
+    res.send("Coming soon...");
+});
 app.all('/player/login/dashboard', function (req, res) {
     const tData = {};
     try {
@@ -37,7 +42,7 @@ app.all('/player/login/dashboard', function (req, res) {
         if (uName[1] && uPass[1]) { res.redirect('/player/growid/login/validate'); }
     } catch (why) { console.log(`Warning: ${why}`); }
 
-    res.render(__dirname + '/public/html/dashboard.html', { data: tData });
+    res.render(__dirname + '/public/html/dashboard.ejs', { data: tData });
 });
 
 app.all('/player/growid/login/validate', (req, res) => {
@@ -58,9 +63,23 @@ app.all('/player/growid/login/validate', (req, res) => {
         accountType: "growtopia"
     });
 });
-
-app.all('/player/*', function (req, res) {
-    res.status(301).redirect('https://api.yoruakio.tech/player/' + req.path.slice(8));
+app.all('/player/growid/checktoken', (req, res) => {
+    const { refreshToken } = req.body;
+    try {
+    const decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
+    if (typeof decoded !== 'string' && !decoded.startsWith('growId=') && !decoded.includes('passwords=')) return res.render(__dirname + '/public/html/dashboard.ejs');
+    res.json({
+        status: 'success',
+        message: 'Account Validated.',
+        token: refreshToken,
+        url: '',
+        accountType: 'growtopia',
+        accountAge: 2
+    });
+    } catch (error) {
+        console.log("Redirecting to player login dashboard");
+        res.render(__dirname + '/public/html/dashboard.ejs');
+    }
 });
 
 app.get('/', function (req, res) {
