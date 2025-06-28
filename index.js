@@ -42,9 +42,8 @@ app.all('/player/login/dashboard', function (req, res) {
         if (uName[1] && uPass[1]) { res.redirect('/player/growid/login/validate'); }
     } catch (why) { console.log(`Warning: ${why}`); }
 
-    res.render(__dirname + '/public/html/dashboard.ejs', { data: tData });
+    res.render(__dirname + '/public/html/dashboard.ejs', {data: tData});
 });
-
 app.all('/player/growid/login/validate', (req, res) => {
     const _token = req.body._token;
     const growId = req.body.growId;
