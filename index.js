@@ -54,13 +54,9 @@ app.all('/player/growid/login/validate', (req, res) => {
                      (email ? '&has_reg=1' : '&has_reg=0');
                     
     const token = Buffer.from(tokenData).toString('base64');
-    res.json({
-        status: "success",
-        message: "Account Validated.",
-        token: token,
-        url: "",
-        accountType: "growtopia"
-    });
+    res.send(
+        `{"status":"success","message":"Account Validated.","token":"${token}","url":"","accountType":"growtopia", "accountAge": 2}`,
+    );
 });
 app.all('/player/growid/checktoken', (req, res) => {
     const { refreshToken } = req.body;
