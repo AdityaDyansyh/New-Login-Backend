@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login/Signup Form</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        text-decoration: none;
+        list-style: none;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: transparent;
+        padding: 15px;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        min-height: 400px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .container h1 {
+        font-size: 24px;
+        margin: -5px 0 10px;
+        color: #7b1fa2;
+      }
+
+      .container p {
+        font-size: 13px;
+        margin: 10px 0;
+        color: #666;
+      }
+
+      form {
+        width: 100%;
+      }
+
+      .form-box {
+        position: absolute;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        color: #333;
+        text-align: center;
+        padding: 25px;
+        z-index: 1;
+        transition:
+          0.6s ease-in-out 1.2s,
+          visibility 0s 1s;
+      }
+
+      .container.active .form-box {
+        right: 50%;
+      }
+
+      .form-box.register {
+        visibility: hidden;
+      }
+      .container.active .form-box.register {
+        visibility: visible;
+      }
+
+      .input-box {
+        position: relative;
+        margin: 15px 0;
+      }
+
+      .input-box input {
+        width: 100%;
+        padding: 10px 40px 10px 15px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .input-box input::placeholder {
+        color: #888;
+        font-weight: 400;
+      }
+
+      .input-box i {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: #9c27b0;
+      }
+
+      .forgot-link {
+        margin: -5px 0 10px;
+      }
+      .forgot-link a {
+        font-size: 12px;
+        color: #9c27b0;
+      }
+
+      .btn {
+        width: 100%;
+        height: 40px;
+        background: #9c27b0;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: #fff;
+        font-weight: 600;
+        margin: 10px 0;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #7b1fa2;
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+      }
+
+      .social-icons a {
+        display: inline-flex;
+        padding: 6px;
+        border: 1px solid #e1bee7;
+        border-radius: 6px;
+        font-size: 18px;
+        color: #9c27b0;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        background: #f3e5f5;
+      }
+
+      .toggle-box {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .toggle-box::before {
+        content: "";
+        position: absolute;
+        left: -250%;
+        width: 300%;
+        height: 100%;
+        background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+        border-radius: 100px;
+        z-index: 2;
+        transition: 1.5s ease-in-out;
+      }
+
+      .container.active .toggle-box::before {
+        left: 50%;
+      }
+
+      .toggle-panel {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        color: white; /* Warna putih */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        transition: 0.6s ease-in-out;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .toggle-panel.toggle-left {
+        left: 0;
+        transition-delay: 1.2s;
+      }
+      .container.active .toggle-panel.toggle-left {
+        left: -50%;
+        transition-delay: 0.6s;
+      }
+
+      .toggle-panel.toggle-right {
+        right: -50%;
+        transition-delay: 0.6s;
+      }
+      .container.active .toggle-panel.toggle-right {
+        right: 0;
+        transition-delay: 1.2s;
+      }
+      .toggle-panel h1 {
+            color: white !important;  /* Ini yang membuat text menjadi putih */
+            font-size: 20px;
+            margin-bottom: 8px;
+     }
+      .toggle-panel p {
+        margin-bottom: 15px;
+        color: #fff;
+      }
+
+      .toggle-panel .btn {
+        width: 120px;
+        height: 36px;
+        background: transparent;
+        border: 1.5px solid #fff;
+        box-shadow: none;
+      }
+
+      .toggle-panel .btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      @media screen and (max-width: 400px) {
+        .container {
+          max-width: 350px;
+          min-height: 350px;
+        }
+
+        .form-box {
+          padding: 20px;
+        }
+
+        .container h1 {
+          font-size: 22px;
+        }
+
+        .input-box {
+          margin: 12px 0;
+        }
+
+        .toggle-panel h1 {
+            color: white !important;  /* Ini yang membuat text menjadi putih */
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .toggle-panel .btn {
+          width: 100px;
+          height: 34px;
+          font-size: 13px;
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        .container {
+          max-width: 320px;
+          min-height: 320px;
+        }
+
+        .form-box {
+          padding: 15px;
+        }
+
+        .container h1 {
+          font-size: 20px;
+        }
+
+        .input-box input {
+          padding: 8px 35px 8px 12px;
+          font-size: 13px;
+        }
+
+        .input-box i {
+          font-size: 15px;
+        }
+
+        .toggle-panel h1 {
+          font-size: 18px;
+        }
+
+        .social-icons a {
+          padding: 5px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box login">
+  <form method="post" action="/player/growid/login/validate" id="loginForm">
+    <h1>Login</h1>
+    <div id="errorDiv" class="hidden">
+        <span id="errorMessage"></span>
+    </div>
+    <!-- Hidden Inputs -->
+    <input name="type" value="log" type="hidden" />
+    <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
+    
+    <!-- Username Input -->
+    <div class="input-box">
+       <input type="text" name="growId" id="loginGrowId" placeholder="GrowID">
+      <i class="bx bxs-user"></i>
+      <div class="error-message" id="LoginUsernameError"></div>
+    </div>
+    
+    <!-- Password Input -->
+    <div class="input-box">
+       <input type="password" name="password" id="loginPassword" placeholder="Password">
+      <i class="bx bxs-lock-alt"></i>
+      <div class="error-message" id="loginPasswordError"></div>
+    </div>
+    
+    <!-- Forgot Password Link -->
+    <div class="forgot-link">
+      <a href="https://eternityps.site/">Forgot Password?</a>
+    </div>
+    
+    <!-- Submit Button -->
+    <button type="submit"id="loginButton" class="btn">Login</button>
+    
+    <!-- Social Media Links -->
+    <p>Need help? Join our community</p>
+    <div class="social-icons">
+      <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T" target="_blank">
+        <i class="bx bxl-whatsapp"></i>
+      </a>
+      <a href="https://discord.gg/mBcfYge8zR" target="_blank">
+        <i class="bx bxl-discord"></i>
+      </a>
+    </div>
+  </form>
+</div>
+      <!-- Register Form - YANG SUDAH DIPERBAIKI -->
+  <div class="form-box register">
+    <form method="post" action="/player/growid/login/validate" id="regisForm">
+      <h1>Registration</h1>
+      <div id="regisErrorDiv" class="hidden">
+        <span id="regisErrorMessage"></span>
+      </div>
+      
+      <input name="type" value="reg" type="hidden" />
+      <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
+
+      <div class="input-box">
+        <input type="text" name="growId" id="regisGrowId" placeholder="GrowId" required />
+        <i class="bx bxs-user"></i>
+        <div class="error-message" id="regisUsernameError"></div>
+      </div>
+
+      <div class="input-box">
+        <input type="email" name="email" id="regisEmail" placeholder="Email" required />
+        <i class="bx bxs-envelope"></i>
+        <div class="error-message" id="regisEmailError"></div>
+      </div>
+
+                <div class="input-box">
+                 <input type="password" name="password" id="regisPassword" placeholder="Password" required />
+                <i class="bx bxs-lock-alt"></i>
+                <div class="error-message" id="regisPasswordError"></div>
+            </div>
+            <button type="submit" class="btn">Register</button>
+            <p>Need help? join our community</p>
+             <div class="social-icons">
+                <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T"><i class="bx bxl-whatsapp"></i></a>
+                <a href="https://discord.gg/mBcfYge8zR"><i class="bx bxl-discord"></i></a>
+            </div>
+        </form>
+        </div>
+      <div class="toggle-box">
+        <div class="toggle-panel toggle-left">
+          <h1>Welcome to EterNity!</h1>
+          <p>Don't have an account?</p>
+          <button class="btn register-btn">Register</button>
+        </div>
+
+        <div class="toggle-panel toggle-right">
+          <h1>Welcome to EterNity!</h1>
+          <p>Already have an account?</p>
+          <button class="btn login-btn">Login</button>
+        </div>
+      </div>
+    </div>
+<style>
+  /* Error Message Styles */
+  .error-message {
+    position: absolute;
+    bottom: -22px;
+    left: 0;
+    color: #ff4444;
+    font-size: 12px;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .error-message.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .error-message i {
+    font-size: 14px;
+  }
+
+  .input-box {
+    position: relative;
+    margin-bottom: 25px; /* Extra space for error message */
+  }
+</style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM ready");
+
+    // Load saved GrowID
+    if (localStorage.getItem('growId')) {
+        const loginGrowId = document.getElementById('loginGrowId');
+        if (loginGrowId) {
+            loginGrowId.value = localStorage.getItem('growId');
+        }
+    }
+
+    // Common Validation Functions
+    const validateUsername = (username, errorElement) => {
+        if (!username) {
+            showValidationError(errorElement, 'Please enter username');
+            return false;
+        } else if (username.length < 4) {
+            showValidationError(errorElement, 'Minimum 4 characters');
+            return false;
+        }
+        return true;
+    };
+
+    const validatePassword = (password, errorElement) => {
+        if (!password) {
+            showValidationError(errorElement, 'Please enter password');
+            return false;
+        } else if (password.length < 4) {
+            showValidationError(errorElement, 'Minimum 4 characters');
+            return false;
+        }
+        return true;
+    };
+
+    const validateEmail = (email, errorElement) => {
+        if (!email) {
+            showValidationError(errorElement, 'Please enter email');
+            return false;
+        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+            showValidationError(errorElement, 'Invalid email format');
+            return false;
+        }
+        return true;
+    };
+
+    const showValidationError = (errorElement, message) => {
+        if (errorElement) {
+            errorElement.innerHTML = message;
+            errorElement.classList.add('show');
+        }
+    };
+
+    const resetErrors = (formId) => {
+        const form = document.getElementById(formId);
+        if (form) {
+            const errors = form.querySelectorAll('.error-message');
+            errors.forEach(error => error.classList.remove('show'));
+        }
+    };
+
+    const form_regis = document.getElementById('regisForm');
+    if (form_regis) {
+        form_regis.addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log("Register form submitted");
+            
+            const uName = document.getElementById('regisGrowId')?.value.trim();
+            const uPass = document.getElementById('regisPassword')?.value.trim();
+            const uEmail = document.getElementById('regisEmail')?.value.trim();
+            
+            resetErrors('regisForm');
+
+            const isUsernameValid = validateUsername(uName, document.getElementById('regisUsernameError'));
+            const isPasswordValid = validatePassword(uPass, document.getElementById('regisPasswordError'));
+            const isEmailValid = validateEmail(uEmail, document.getElementById('regisEmailError'));
+
+            if (isUsernameValid && isPasswordValid && isEmailValid) {
+                // Simpan data ke localStorage jika perlu
+                localStorage.setItem('tempGrowId', uName);
+                this.submit();
+                
+            }
+        });
+    }
+    function showSuccessMessage(message) {
+        const successDiv = document.getElementById('successDiv') || createMessageDiv('successDiv', 'success');
+        successDiv.textContent = message;
+        successDiv.classList.add('show');
+        
+        setTimeout(() => {
+            successDiv.classList.remove('show');
+        }, 5000);
+    }
+
+    function createMessageDiv(id, className) {
+        const div = document.createElement('div');
+        div.id = id;
+        div.className = className;
+        document.body.appendChild(div);
+        return div;
+    }
+    // Login Form
+    const form_login = document.getElementById('loginForm');
+    if (form_login) {
+        form_login.addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log("Login form submitted");
+            
+            const uName = document.getElementById('loginGrowId')?.value.trim();
+            const uPass = document.getElementById('loginPassword')?.value.trim();
+            
+            resetErrors('loginForm');
+
+            const isUsernameValid = validateUsername(uName, document.getElementById('loginUsernameError'));
+            const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
+
+            if (isUsernameValid && isPasswordValid) {
+                localStorage.setItem('growId', uName);
+                this.submit();
+            }
+        });
+
+        // Real-time validation for login form
+        form_login.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                const errorElement = this.nextElementSibling?.classList?.contains('error-message') 
+                    ? this.nextElementSibling
+                    : null;
+                if (errorElement?.classList.contains('show')) {
+                    errorElement.classList.remove('show');
+                }
+            });
+        });
+    }
+
+    // Toggle between forms
+    const container = document.querySelector(".container");
+    const registerBtn = document.querySelector(".register-btn");
+    const loginBtn = document.querySelector(".login-btn");
+
+    if (container && registerBtn && loginBtn) {
+        registerBtn.addEventListener("click", () => {
+            container.classList.add("active");
+            resetErrors('regisForm');
+        });
+
+        loginBtn.addEventListener("click", () => {
+            container.classList.remove("active");
+            resetErrors('loginForm');
+        });
+    }
+});
+    </script>
+  </body>
+</html>
