@@ -12,4 +12,7 @@
             "dest": "/"
         }
     ]
+    "rewrites": [
+    { "source": "/game_title.png", "destination": "/game_title.png" }
+    ]
 }
