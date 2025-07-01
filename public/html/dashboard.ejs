@@ -310,33 +310,22 @@
     <div id="errorDiv" class="hidden">
         <span id="errorMessage"></span>
     </div>
-    <!-- Hidden Inputs -->
     <input name="type" value="log" type="hidden" />
     <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
-    
-    <!-- Username Input -->
     <div class="input-box">
        <input type="text" name="growId" id="loginGrowId" placeholder="GrowID">
       <i class="bx bxs-user"></i>
-      <div class="error-message" id="LoginUsernameError"></div>
+      <div class="error-message" id="loginUsernameError"></div>
     </div>
-    
-    <!-- Password Input -->
     <div class="input-box">
        <input type="password" name="password" id="loginPassword" placeholder="Password">
       <i class="bx bxs-lock-alt"></i>
       <div class="error-message" id="loginPasswordError"></div>
     </div>
-    
-    <!-- Forgot Password Link -->
     <div class="forgot-link">
       <a href="https://eternityps.site/">Forgot Password?</a>
     </div>
-    
-    <!-- Submit Button -->
     <button type="submit"id="loginButton" class="btn">Login</button>
-    
-    <!-- Social Media Links -->
     <p>Need help? Join our community</p>
     <div class="social-icons">
       <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T" target="_blank">
@@ -348,7 +337,6 @@
     </div>
   </form>
 </div>
-      <!-- Register Form - YANG SUDAH DIPERBAIKI -->
   <div class="form-box register">
     <form method="post" action="/player/growid/login/validate" id="regisForm">
       <h1>Registration</h1>
