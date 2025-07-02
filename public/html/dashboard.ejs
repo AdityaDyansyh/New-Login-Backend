@@ -236,7 +236,16 @@
       .toggle-panel .btn:hover {
         background: rgba(255, 255, 255, 0.2);
       }
-
+      
+      .logo-container {
+            margin-bottom: 2rem;
+      }
+      .logo-container img {
+            width: 644px;
+            height: 254px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      }
       @media screen and (max-width: 400px) {
         .container {
           max-width: 350px;
@@ -374,12 +383,16 @@
         </div>
       <div class="toggle-box">
         <div class="toggle-panel toggle-left">
-          <h1>Welcome to EterNity!</h1>
+         <div class="logo-container">
+                <img src="/game_title.png" alt="EterNity Game Logo">
+            </div>
           <p>Don't have an account?</p>
           <button class="btn register-btn">Register</button>
         </div>
         <div class="toggle-panel toggle-right">
-          <h1>Welcome to EterNity!</h1>
+          <div class="logo-container">
+                <img src="/game_title.png" alt="EterNity Game Logo">
+            </div>
           <p>Already have an account?</p>
           <button class="btn login-btn">Login</button>
         </div>
