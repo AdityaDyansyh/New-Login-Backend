@@ -6,16 +6,87 @@
     <title>Login/Signup Form</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 100;
+        src: url('/fonts/Poppins-Thin.woff2') format('woff2'),
+         url('/fonts/Poppins-Thin.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 200;
+        src: url('/fonts/Poppins-ExtraLight.woff2') format('woff2'),
+         url('/fonts/Poppins-ExtraLight.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 300;
+        src: url('/fonts/Poppins-Light.woff2') format('woff2'),
+         url('/fonts/Poppins-Light.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/fonts/Poppins-Regular.woff2') format('woff2'),
+         url('/fonts/Poppins-Regular.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        src: url('/fonts/Poppins-Medium.woff2') format('woff2'),
+         url('/fonts/Poppins-Medium.ttf') format('truetype');
+        }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        src: url('/fonts/Poppins-SemiBold.woff2') format('woff2'),
+         url('/fonts/Poppins-SemiBold.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        src: url('/fonts/Poppins-Bold.woff2') format('woff2'),
+         url('/fonts/Poppins-Bold.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 800;
+        src: url('/fonts/Poppins-ExtraBold.woff2') format('woff2'),
+         url('/fonts/Poppins-ExtraBold.ttf') format('truetype');
+      } 
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 900;
+        src: url('/fonts/Poppins-Black.woff2') format('woff2'),
+         url('/fonts/Poppins-Black.ttf') format('truetype');
+      }
 
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
+        font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
         text-decoration: none;
         list-style: none;
       }
+
 
       body {
         display: flex;
@@ -140,6 +211,10 @@
         background: #7b1fa2;
       }
 
+      .loading {
+        background-color: #ccc; /* Warna saat loading */
+        cursor: not-allowed; /* Menunjukkan bahwa tombol tidak dapat diklik */
+      }
       .social-icons {
         display: flex;
         justify-content: center;
@@ -343,6 +418,9 @@
       <a href="https://discord.gg/mBcfYge8zR" target="_blank">
         <i class="bx bxl-discord"></i>
       </a>
+      <a href="https://t.me/windsverse" target="_blank">
+        <i class="bx bxl-telegram"></i>
+      </a>
     </div>
   </form>
 </div>
@@ -373,12 +451,7 @@
                 <i class="bx bxs-lock-alt"></i>
                 <div class="error-message" id="regisPasswordError"></div>
             </div>
-            <button type="submit" class="btn">Register</button>
-            <p>Need help? join our community</p>
-             <div class="social-icons">
-                <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T"><i class="bx bxl-whatsapp"></i></a>
-                <a href="https://discord.gg/mBcfYge8zR"><i class="bx bxl-discord"></i></a>
-            </div>
+            <button type="submit" id="regisButton" class="btn">Register</button>
         </form>
         </div>
       <div class="toggle-box">
@@ -506,9 +579,16 @@
             const isEmailValid = validateEmail(uEmail, document.getElementById('regisEmailError'));
 
             if (isUsernameValid && isPasswordValid && isEmailValid) {
-                // Simpan data ke localStorage jika perlu
+                const regisButton = document.getElementById("regisButton");
+                regisButton.textContent = "Registering...";
+                regisButton.classList.add("loading");
+                setTimeout(function() {
                 form_regis.submit();
                 localStorage.setItem('tempGrowId', uName);
+                regisButton.textContent = "Register";
+                regisButton.classList.remove("loading"); 
+                }, 2000); 
+                
                 
             }
         });
@@ -530,7 +610,6 @@
         document.body.appendChild(div);
         return div;
     }
-    // Login Form
     const form_login = document.getElementById('loginForm');
     if (form_login) {
         form_login.addEventListener('submit', function(e) {
@@ -546,8 +625,16 @@
             const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
 
             if (isUsernameValid && isPasswordValid) {
+              const loginButton = document.getElementById("loginButton");
+                loginButton.textContent = "Logging in...";
+                loginButton.classList.add("loading");
+                setTimeout(function() {
                 form_login.submit();
                 localStorage.setItem('growId', uName);
+                loginButton.textContent = "Login";
+                loginButton.classList.remove("loading"); 
+                }, 2000); 
+                
             }
         });
 
