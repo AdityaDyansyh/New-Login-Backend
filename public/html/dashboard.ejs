@@ -220,10 +220,10 @@
         transition-delay: 1.2s;
       }
       .toggle-panel h1 {
-            color: white !important;  
-            font-size: 20px;
-            margin-bottom: 8px;
-     }
+        color: white !important;  
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
       .toggle-panel p {
         margin-bottom: 15px;
         color: #fff;
@@ -386,14 +386,14 @@
       <div class="toggle-box">
         <div class="toggle-panel toggle-left">
          <div class="logo-container">
-                <img src="/game_title.png" alt="EterNity Game Logo">
+                <img src="/game_title.png" alt="Game Title Name">
             </div>
           <p>Don't have an account?</p>
           <button class="btn register-btn">Register</button>
         </div>
         <div class="toggle-panel toggle-right">
           <div class="logo-container">
-                <img src="/game_title.png" alt="EterNity Game Logo">
+                <img src="/game_title.png" alt="Game Title Name">
             </div>
           <p>Already have an account?</p>
           <button class="btn login-btn">Login</button>
@@ -405,7 +405,7 @@
   .error-message {
     position: absolute;
     bottom: -22px;
-    left: 0;
+    left: 5px;
     color: #ff4444;
     font-size: 12px;
     opacity: 0;
@@ -449,6 +449,14 @@
             showValidationError(errorElement, 'Minimum 4 characters');
             return false;
         }
+        else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+            showValidationError(errorElement, 'Invalid input username');
+            return false;
+        }
+        else if (username.length > 20) {
+            showValidationError(errorElement, 'Maximum 20 characters');
+            return false;
+        }
         return true;
     };
 
@@ -456,8 +464,9 @@
         if (!password) {
             showValidationError(errorElement, 'Please enter password');
             return false;
-        } else if (password.length < 4) {
-            showValidationError(errorElement, 'Minimum 4 characters');
+        } 
+        else if (password.length < 6) {
+            showValidationError(errorElement, 'Minimum 6 characters');
             return false;
         }
         return true;
@@ -481,13 +490,13 @@
         }
     };
 
-    const resetErrors = (formId) => {
+    function resetErrors(formId) {
         const form = document.getElementById(formId);
-        if (form) {
-            const errors = form.querySelectorAll('.error-message');
-            errors.forEach(error => error.classList.remove('show'));
-        }
-    };
+        const errorMessages = form.querySelectorAll('.error-message');
+        errorMessages.forEach(error => {
+            error.classList.remove('show');
+        });
+    }
 
     const form_regis = document.getElementById('regisForm');
     if (form_regis) {
@@ -518,6 +527,14 @@
                 
                 
             }
+        });
+        form_regis.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                const errorElement = this.parentElement.querySelector('.error-message');
+                if (errorElement && errorElement.classList.contains('error-message')) {
+                    errorElement.classList.remove('show');
+                }
+            });
         });
     }
     function showSuccessMessage(message) {
@@ -550,6 +567,7 @@
 
             const isUsernameValid = validateUsername(uName, document.getElementById('loginUsernameError'));
             const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
+            
 
             if (isUsernameValid && isPasswordValid) {
               const loginButton = document.getElementById("loginButton");
@@ -567,10 +585,8 @@
 
         form_login.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', function() {
-                const errorElement = this.nextElementSibling?.classList?.contains('error-message') 
-                    ? this.nextElementSibling
-                    : null;
-                if (errorElement?.classList.contains('show')) {
+                const errorElement = this.parentElement.querySelector('.error-message');
+                if (errorElement && errorElement.classList.contains('error-message')) {
                     errorElement.classList.remove('show');
                 }
             });
