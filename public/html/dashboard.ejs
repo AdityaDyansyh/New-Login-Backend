@@ -82,11 +82,10 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Poppins", sans-serif; /* Menggunakan font Poppins */
+        font-family: "Poppins", sans-serif;
         text-decoration: none;
         list-style: none;
       }
-
 
       body {
         display: flex;
@@ -212,8 +211,8 @@
       }
 
       .loading {
-        background-color: #ccc; /* Warna saat loading */
-        cursor: not-allowed; /* Menunjukkan bahwa tombol tidak dapat diklik */
+        background-color: #ccc;
+        cursor: not-allowed; 
       }
       .social-icons {
         display: flex;
@@ -262,7 +261,7 @@
         position: absolute;
         width: 50%;
         height: 100%;
-        color: white; /* Warna putih */
+        color: white; 
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -291,7 +290,7 @@
         transition-delay: 1.2s;
       }
       .toggle-panel h1 {
-            color: white !important;  /* Ini yang membuat text menjadi putih */
+            color: white !important;  
             font-size: 20px;
             margin-bottom: 8px;
      }
@@ -340,7 +339,7 @@
         }
 
         .toggle-panel h1 {
-            color: white !important;  /* Ini yang membuat text menjadi putih */
+            color: white !important; 
             font-size: 20px;
             margin-bottom: 8px;
         }
@@ -472,7 +471,7 @@
       </div>
     </div>
 <style>
-  /* Error Message Styles */
+
   .error-message {
     position: absolute;
     bottom: -22px;
@@ -498,14 +497,13 @@
 
   .input-box {
     position: relative;
-    margin-bottom: 25px; /* Extra space for error message */
+    margin-bottom: 25px; 
   }
 </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM ready");
 
-    // Load saved GrowID
     if (localStorage.getItem('growId')) {
         const loginGrowId = document.getElementById('loginGrowId');
         if (loginGrowId) {
@@ -513,7 +511,6 @@
         }
     }
 
-    // Common Validation Functions
     const validateUsername = (username, errorElement) => {
         if (!username) {
             showValidationError(errorElement, 'Please enter username');
@@ -638,7 +635,6 @@
             }
         });
 
-        // Real-time validation for login form
         form_login.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', function() {
                 const errorElement = this.nextElementSibling?.classList?.contains('error-message') 
@@ -651,7 +647,6 @@
         });
     }
 
-    // Toggle between forms
     const container = document.querySelector(".container");
     const registerBtn = document.querySelector(".register-btn");
     const loginBtn = document.querySelector(".login-btn");
