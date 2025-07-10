@@ -16,7 +16,7 @@ app.use(compression({
         return compression.filter(req, res);
     }
 }));
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 app.set('trust proxy', 1);
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -37,14 +37,7 @@ app.all('/player/register', function(req, res) {
     res.send("Coming soon...");
 });
 app.all('/player/login/dashboard', function (req, res) {
-    const tData = {};
-    try {
-        const uData = JSON.stringify(req.body).split('"')[1].split('\\n'); const uName = uData[0].split('|'); const uPass = uData[1].split('|');
-        for (let i = 0; i < uData.length - 1; i++) { const d = uData[i].split('|'); tData[d[0]] = d[1]; }
-        if (uName[1] && uPass[1]) { res.redirect('/player/growid/login/validate'); }
-    } catch (why) { console.log(`Warning: ${why}`); }
-
-    res.render(__dirname + '/public/html/dashboard.ejs', {data: tData});
+    res.sendFile(path.join(__dirname, 'public/html/dashboard.html'));
 });
 app.all('/player/growid/login/validate', (req, res) => {
     const _token = req.body._token;
@@ -75,7 +68,7 @@ app.all('/player/growid/checktoken', (req, res) => {
     });
     } catch (error) {
         console.log("Redirecting to player login dashboard");
-        res.render(__dirname + '/public/html/dashboard.ejs');
+        res.render(__dirname + '/public/html/dashboard.html');
     }
 });
 
