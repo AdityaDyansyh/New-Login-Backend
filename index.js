@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const rateLimiter = require('express-rate-limit');
 const compression = require('compression');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression({
@@ -30,6 +31,11 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(rateLimiter({ windowMs: 5 * 60 * 1000, max: 800, headers: true }));
+app.use('/api', createProxyMiddleware({ 
+  target: 'http://188.166.215.120:3000',
+  changeOrigin: true,
+  pathRewrite: { '^/api': '' }
+}));
 app.all('/favicon.ico', function(req, res) {
     
 });
