@@ -403,7 +403,7 @@
   .error-message {
     position: absolute;
     bottom: -20px;
-    left: 10;
+    left: 15px;
     color: #ff4444;
     font-size: 12px;
     opacity: 0;
@@ -552,7 +552,7 @@
         document.body.appendChild(div);
         return div;
     }
-    const API_URL = 'https://cors-anywhere.herokuapp.com/http://188.166.215.120:3000/api/login';
+    const API_URL = '/api/login';
     const form_login = document.getElementById('loginForm');
     if (form_login) {
         form_login.addEventListener('submit', async function(e) {
