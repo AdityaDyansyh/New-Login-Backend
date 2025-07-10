@@ -6,7 +6,7 @@
     <title>Login/Signup Form</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <style>
-      
+      /* Reset and Base Styles */
       * {
         margin: 0;
         padding: 0;
@@ -24,6 +24,7 @@
         padding: 15px;
       }
 
+      /* Container Styles */
       .container {
         position: relative;
         width: 100%;
@@ -48,6 +49,7 @@
         color: #666;
       }
 
+      /* Form Styles */
       form {
         width: 100%;
       }
@@ -76,10 +78,12 @@
       .form-box.register {
         visibility: hidden;
       }
+
       .container.active .form-box.register {
         visibility: visible;
       }
 
+      /* Input Styles */
       .input-box {
         position: relative;
         margin: 15px 0;
@@ -111,14 +115,17 @@
         color: #9c27b0;
       }
 
+      /* Link Styles */
       .forgot-link {
         margin: -5px 0 10px;
       }
+
       .forgot-link a {
         font-size: 12px;
         color: #9c27b0;
       }
 
+      /* Button Styles */
       .btn {
         width: 100%;
         height: 40px;
@@ -140,8 +147,10 @@
 
       .loading {
         background-color: #ccc;
-        cursor: not-allowed; 
+        cursor: not-allowed;
       }
+
+      /* Social Icons */
       .social-icons {
         display: flex;
         justify-content: center;
@@ -163,6 +172,7 @@
         background: #f3e5f5;
       }
 
+      /* Toggle Box Styles */
       .toggle-box {
         position: absolute;
         width: 100%;
@@ -185,11 +195,12 @@
         left: 50%;
       }
 
+      /* Toggle Panel Styles */
       .toggle-panel {
         position: absolute;
         width: 50%;
         height: 100%;
-        color: white; 
+        color: white;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -204,6 +215,7 @@
         left: 0;
         transition-delay: 1.2s;
       }
+
       .container.active .toggle-panel.toggle-left {
         left: -50%;
         transition-delay: 0.6s;
@@ -213,15 +225,18 @@
         right: -50%;
         transition-delay: 0.6s;
       }
+
       .container.active .toggle-panel.toggle-right {
         right: 0;
         transition-delay: 1.2s;
       }
+
       .toggle-panel h1 {
-        color: white !important;  
+        color: white !important;
         font-size: 20px;
         margin-bottom: 8px;
       }
+
       .toggle-panel p {
         margin-bottom: 15px;
         color: #fff;
@@ -238,16 +253,49 @@
       .toggle-panel .btn:hover {
         background: rgba(255, 255, 255, 0.2);
       }
-      
+
+      /* Logo Styles */
       .logo-container {
-            margin-bottom: 2rem;
+        margin-bottom: 2rem;
       }
+
       .logo-container img {
-            width: 230px;
-            height: 120px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        width: 230px;
+        height: 120px;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
       }
+
+      /* Error Message Styles */
+      .error-message {
+        position: absolute;
+        bottom: -20px;
+        left: 15px;
+        color: #ff4444;
+        font-size: 12px;
+        opacity: 0;
+        transform: translateY(5px);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .error-message.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .error-message i {
+        font-size: 14px;
+      }
+
+      .input-box {
+        position: relative;
+        margin-bottom: 25px;
+      }
+
+      /* Responsive Styles */
       @media screen and (max-width: 400px) {
         .container {
           max-width: 350px;
@@ -267,9 +315,9 @@
         }
 
         .toggle-panel h1 {
-            color: white !important; 
-            font-size: 20px;
-            margin-bottom: 8px;
+          color: white !important;
+          font-size: 20px;
+          margin-bottom: 8px;
         }
 
         .toggle-panel .btn {
@@ -315,190 +363,174 @@
   </head>
   <body>
     <div class="container">
+      <!-- Login Form -->
       <div class="form-box login">
-  <form method="post" action="/player/growid/login/validate" id="loginForm">
-    <h1>Login</h1>
-    <div id="errorDiv" class="hidden">
-        <span id="errorMessage"></span>
-    </div>
-    <input name="type" value="log" type="hidden" />
-    <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
-    <div class="input-box">
-       <input type="text" name="growId" id="loginGrowId" placeholder="GrowID">
-      <i class="bx bxs-user"></i>
-      <div class="error-message" id="loginUsernameError"></div>
-    </div>
-    <div class="input-box">
-       <input type="password" name="password" id="loginPassword" placeholder="Password">
-      <i class="bx bxs-lock-alt"></i>
-      <div class="error-message" id="loginPasswordError"></div>
-    </div>
-    <div class="forgot-link">
-      <a href="https://eternityps.site/">Forgot Password?</a>
-    </div>
-    <button type="submit"id="loginButton" class="btn">Login</button>
-    <p>Need help? Join our community</p>
-    <div class="social-icons">
-      <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T" target="_blank">
-        <i class="bx bxl-whatsapp"></i>
-      </a>
-      <a href="https://discord.gg/mBcfYge8zR" target="_blank">
-        <i class="bx bxl-discord"></i>
-      </a>
-      <a href="https://t.me/windsverse" target="_blank">
-        <i class="bx bxl-telegram"></i>
-      </a>
-    </div>
-  </form>
-</div>
-  <div class="form-box register">
-    <form method="post" action="/player/growid/login/validate" id="regisForm">
-      <h1>Registration</h1>
-      <div id="regisErrorDiv" class="hidden">
-        <span id="regisErrorMessage"></span>
-      </div>
-      
-      <input name="type" value="reg" type="hidden" />
-      <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
-
-      <div class="input-box">
-        <input type="text" name="growId" id="regisGrowId" placeholder="GrowId" required />
-        <i class="bx bxs-user"></i>
-        <div class="error-message" id="regisUsernameError"></div>
-      </div>
-
-      <div class="input-box">
-        <input type="email" name="email" id="regisEmail" placeholder="Email" required />
-        <i class="bx bxs-envelope"></i>
-        <div class="error-message" id="regisEmailError"></div>
-      </div>
-
-                <div class="input-box">
-                 <input type="password" name="password" id="regisPassword" placeholder="Password" required />
-                <i class="bx bxs-lock-alt"></i>
-                <div class="error-message" id="regisPasswordError"></div>
-            </div>
-            <button type="submit" id="regisButton" class="btn">Register</button>
+        <form method="post" action="/player/growid/login/validate" id="loginForm">
+          <h1>Login</h1>
+          <div id="errorDiv" class="hidden">
+            <span id="errorMessage"></span>
+          </div>
+          <input name="type" value="log" type="hidden" />
+          <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
+          
+          <div class="input-box">
+            <input type="text" name="growId" id="loginGrowId" placeholder="GrowID">
+            <i class="bx bxs-user"></i>
+            <div class="error-message" id="loginUsernameError"></div>
+          </div>
+          
+          <div class="input-box">
+            <input type="password" name="password" id="loginPassword" placeholder="Password">
+            <i class="bx bxs-lock-alt"></i>
+            <div class="error-message" id="loginPasswordError"></div>
+          </div>
+          
+          <div class="forgot-link">
+            <a href="https://eternityps.site/">Forgot Password?</a>
+          </div>
+          
+          <button type="submit" id="loginButton" class="btn">Login</button>
+          
+          <p>Need help? Join our community</p>
+          
+          <div class="social-icons">
+            <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T" target="_blank">
+              <i class="bx bxl-whatsapp"></i>
+            </a>
+            <a href="https://discord.gg/mBcfYge8zR" target="_blank">
+              <i class="bx bxl-discord"></i>
+            </a>
+            <a href="https://t.me/windsverse" target="_blank">
+              <i class="bx bxl-telegram"></i>
+            </a>
+          </div>
         </form>
-        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="form-box register">
+        <form method="post" action="/player/growid/login/validate" id="regisForm">
+          <h1>Registration</h1>
+          <div id="regisErrorDiv" class="hidden">
+            <span id="regisErrorMessage"></span>
+          </div>
+          
+          <input name="type" value="reg" type="hidden" />
+          <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
+
+          <div class="input-box">
+            <input type="text" name="growId" id="regisGrowId" placeholder="GrowId" required />
+            <i class="bx bxs-user"></i>
+            <div class="error-message" id="regisUsernameError"></div>
+          </div>
+
+          <div class="input-box">
+            <input type="email" name="email" id="regisEmail" placeholder="Email" required />
+            <i class="bx bxs-envelope"></i>
+            <div class="error-message" id="regisEmailError"></div>
+          </div>
+
+          <div class="input-box">
+            <input type="password" name="password" id="regisPassword" placeholder="Password" required />
+            <i class="bx bxs-lock-alt"></i>
+            <div class="error-message" id="regisPasswordError"></div>
+          </div>
+          
+          <button type="submit" id="regisButton" class="btn">Register</button>
+        </form>
+      </div>
+
+      <!-- Toggle Panels -->
       <div class="toggle-box">
         <div class="toggle-panel toggle-left">
-         <div class="logo-container">
-                <img src="/game_title.png" alt="Game Title Name">
-            </div>
+          <div class="logo-container">
+            <img src="/game_title.png" alt="Game Title Name">
+          </div>
           <p>Don't have an account?</p>
           <button class="btn register-btn">Register</button>
         </div>
+        
         <div class="toggle-panel toggle-right">
           <div class="logo-container">
-                <img src="/game_title.png" alt="Game Title Name">
-            </div>
+            <img src="/game_title.png" alt="Game Title Name">
+          </div>
           <p>Already have an account?</p>
           <button class="btn login-btn">Login</button>
         </div>
       </div>
     </div>
-<style>
 
-  .error-message {
-    position: absolute;
-    bottom: -20px;
-    left: 15px;
-    color: #ff4444;
-    font-size: 12px;
-    opacity: 0;
-    transform: translateY(5px);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .error-message.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .error-message i {
-    font-size: 14px;
-  }
-
-  .input-box {
-    position: relative;
-    margin-bottom: 25px; 
-  }
-</style>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM ready");
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log("DOM ready");
 
-    if (localStorage.getItem('growId')) {
-        const loginGrowId = document.getElementById('loginGrowId');
-        if (loginGrowId) {
+        // Load saved GrowID if available
+        if (localStorage.getItem('growId')) {
+          const loginGrowId = document.getElementById('loginGrowId');
+          if (loginGrowId) {
             loginGrowId.value = localStorage.getItem('growId');
+          }
         }
-    }
 
-    const validateUsername = (username, errorElement) => {
-        if (!username) {
+        // Validation Functions
+        const validateUsername = (username, errorElement) => {
+          if (!username) {
             showValidationError(errorElement, 'Please enter username');
             return false;
-        } else if (username.length < 4) {
+          } else if (username.length < 4) {
             showValidationError(errorElement, 'Minimum 4 characters');
             return false;
-        }
-        else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+          } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
             showValidationError(errorElement, 'Invalid input username');
             return false;
-        }
-        else if (username.length > 20) {
+          } else if (username.length > 20) {
             showValidationError(errorElement, 'Maximum 20 characters');
             return false;
-        }
-        return true;
-    };
+          }
+          return true;
+        };
 
-    const validatePassword = (password, errorElement) => {
-        if (!password) {
+        const validatePassword = (password, errorElement) => {
+          if (!password) {
             showValidationError(errorElement, 'Please enter password');
             return false;
-        } 
-        else if (password.length < 6) {
+          } else if (password.length < 6) {
             showValidationError(errorElement, 'Minimum 6 characters');
             return false;
-        }
-        return true;
-    };
+          }
+          return true;
+        };
 
-    const validateEmail = (email, errorElement) => {
-        if (!email) {
+        const validateEmail = (email, errorElement) => {
+          if (!email) {
             showValidationError(errorElement, 'Please enter email');
             return false;
-        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+          } else if (!/^\S+@\S+\.\S+$/.test(email)) {
             showValidationError(errorElement, 'Invalid email format');
             return false;
-        }
-        return true;
-    };
+          }
+          return true;
+        };
 
-    const showValidationError = (errorElement, message) => {
-        if (errorElement) {
+        const showValidationError = (errorElement, message) => {
+          if (errorElement) {
             errorElement.innerHTML = message;
             errorElement.classList.add('show');
-        }
-    };
+          }
+        };
 
-    function resetErrors(formId) {
-        const form = document.getElementById(formId);
-        const errorMessages = form.querySelectorAll('.error-message');
-        errorMessages.forEach(error => {
+        function resetErrors(formId) {
+          const form = document.getElementById(formId);
+          const errorMessages = form.querySelectorAll('.error-message');
+          errorMessages.forEach(error => {
             error.classList.remove('show');
-        });
-    }
+          });
+        }
 
-    const form_regis = document.getElementById('regisForm');
-    if (form_regis) {
-        form_regis.addEventListener('submit', function(e) {
+        // Registration Form Handling
+        const form_regis = document.getElementById('regisForm');
+        if (form_regis) {
+          form_regis.addEventListener('submit', function(e) {
             e.preventDefault();
             console.log("Register form submitted");
             
@@ -513,48 +545,33 @@
             const isEmailValid = validateEmail(uEmail, document.getElementById('regisEmailError'));
 
             if (isUsernameValid && isPasswordValid && isEmailValid) {
-                const regisButton = document.getElementById("regisButton");
-                regisButton.textContent = "Registering...";
-                regisButton.classList.add("loading");
-                setTimeout(function() {
+              const regisButton = document.getElementById("regisButton");
+              regisButton.textContent = "Registering...";
+              regisButton.classList.add("loading");
+              
+              setTimeout(function() {
                 form_regis.submit();
                 localStorage.setItem('tempGrowId', uName);
                 regisButton.textContent = "Register";
                 regisButton.classList.remove("loading"); 
-                }, 2000); 
-                
-                
+              }, 2000);
             }
-        });
-        form_regis.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', function() {
-                const errorElement = this.parentElement.querySelector('.error-message');
-                if (errorElement && errorElement.classList.contains('error-message')) {
-                    errorElement.classList.remove('show');
-                }
-            });
-        });
-    }
-    function showSuccessMessage(message) {
-        const successDiv = document.getElementById('successDiv') || createMessageDiv('successDiv', 'success');
-        successDiv.textContent = message;
-        successDiv.classList.add('show');
-        
-        setTimeout(() => {
-            successDiv.classList.remove('show');
-        }, 5000);
-    }
+          });
 
-    function createMessageDiv(id, className) {
-        const div = document.createElement('div');
-        div.id = id;
-        div.className = className;
-        document.body.appendChild(div);
-        return div;
-    }
-    const form_login = document.getElementById('loginForm');
-    if (form_login) {
-        form_login.addEventListener('submit', async function(e) {
+          form_regis.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+              const errorElement = this.parentElement.querySelector('.error-message');
+              if (errorElement && errorElement.classList.contains('error-message')) {
+                errorElement.classList.remove('show');
+              }
+            });
+          });
+        }
+
+        // Login Form Handling
+        const form_login = document.getElementById('loginForm');
+        if (form_login) {
+          form_login.addEventListener('submit', async function(e) {
             e.preventDefault();
             console.log("Login form submitted");
             
@@ -566,46 +583,47 @@
             const isUsernameValid = validateUsername(uName, document.getElementById('loginUsernameError'));
             const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
 
-            
             if (isUsernameValid && isPasswordValid) {
-                    const loginButton = document.getElementById("loginButton");
-                    loginButton.textContent = "Logging in...";
-                    loginButton.classList.add("loading");
-                    setTimeout(function() {
-                    form_login.submit();
-                    localStorage.setItem('growId', uName);
-                    loginButton.textContent = "Login";
-                    loginButton.classList.remove("loading"); 
-                    }, 2000);       
-             }
-        });
+              const loginButton = document.getElementById("loginButton");
+              loginButton.textContent = "Logging in...";
+              loginButton.classList.add("loading");
+              
+              setTimeout(function() {
+                form_login.submit();
+                localStorage.setItem('growId', uName);
+                loginButton.textContent = "Login";
+                loginButton.classList.remove("loading"); 
+              }, 2000);
+            }
+          });
 
-        form_login.querySelectorAll('input').forEach(input => {
+          form_login.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', function() {
-                const errorElement = this.parentElement.querySelector('.error-message');
-                if (errorElement && errorElement.classList.contains('error-message')) {
-                    errorElement.classList.remove('show');
-                }
+              const errorElement = this.parentElement.querySelector('.error-message');
+              if (errorElement && errorElement.classList.contains('error-message')) {
+                errorElement.classList.remove('show');
+              }
             });
-        });
-    }
+          });
+        }
 
-    const container = document.querySelector(".container");
-    const registerBtn = document.querySelector(".register-btn");
-    const loginBtn = document.querySelector(".login-btn");
+        // Toggle Between Forms
+        const container = document.querySelector(".container");
+        const registerBtn = document.querySelector(".register-btn");
+        const loginBtn = document.querySelector(".login-btn");
 
-    if (container && registerBtn && loginBtn) {
-        registerBtn.addEventListener("click", () => {
+        if (container && registerBtn && loginBtn) {
+          registerBtn.addEventListener("click", () => {
             container.classList.add("active");
             resetErrors('regisForm');
-        });
+          });
 
-        loginBtn.addEventListener("click", () => {
+          loginBtn.addEventListener("click", () => {
             container.classList.remove("active");
             resetErrors('loginForm');
-        });
-    }
-});
+          });
+        }
+      });
     </script>
   </body>
 </html>
