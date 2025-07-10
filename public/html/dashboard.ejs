@@ -463,6 +463,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         console.log("DOM ready");
+        const API_BASE_URL = 'http://188.166.215.120:3000';
 
         // Load saved GrowID if available
         if (localStorage.getItem('growId')) {
@@ -584,6 +585,19 @@
             const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
 
             if (isUsernameValid && isPasswordValid) {
+              const response = await fetch(`${API_BASE_URL}/login`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ uName, uPass })
+              });
+              const data = await response.json();
+              if (!response.ok) {
+                showValidationError(document.getElementById('loginUsernameError'), data.message || 'Login Failed');
+                return;
+              }
+
               const loginButton = document.getElementById("loginButton");
               loginButton.textContent = "Logging in...";
               loginButton.classList.add("loading");
