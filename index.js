@@ -6,7 +6,6 @@ const compression = require('compression');
 const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(compression({
     level: 5,
     threshold: 0,
