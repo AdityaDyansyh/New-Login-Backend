@@ -555,7 +555,7 @@
     const API_URL = 'http://188.166.215.120:3000/api/login';
     const form_login = document.getElementById('loginForm');
     if (form_login) {
-        form_login.addEventListener('submit', function(e) {
+        form_login.addEventListener('submit', async function(e) {
             e.preventDefault();
             console.log("Login form submitted");
             
