@@ -591,7 +591,7 @@
 
             if (isUsernameValid && isPasswordValid) {
               try {
-                  const API_BASE_URL = window.API_BASE_URL || 'http://188.166.215.120:3000'; // Gunakan config environment jika ada
+                  const API_BASE_URL = 'http://188.166.215.120:3000'; // Gunakan config environment jika ada
                   const response = await fetch(`${API_BASE_URL}/login`, { // Perhatikan penggunaan template literal
                       method: 'POST',
                       headers: {
