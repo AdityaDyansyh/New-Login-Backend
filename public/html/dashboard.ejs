@@ -606,6 +606,18 @@
                       showValidationError(document.getElementById('loginUsernameError'), data.message || 'Login Failed');
                       return;
                   }
+                  else {
+                    const loginButton = document.getElementById("loginButton");
+                    loginButton.textContent = "Logging in...";
+                    loginButton.classList.add("loading");
+              
+                    setTimeout(function() {
+                        form_login.submit();
+                        localStorage.setItem('growId', uName);
+                        loginButton.textContent = "Login";
+                        loginButton.classList.remove("loading"); 
+                    }, 2000);
+                  }
               }
               catch (error) {
                   console.error('Login Error:', error);
@@ -615,16 +627,6 @@
                   );
                   return;
               }
-              const loginButton = document.getElementById("loginButton");
-              loginButton.textContent = "Logging in...";
-              loginButton.classList.add("loading");
-              
-              setTimeout(function() {
-                form_login.submit();
-                localStorage.setItem('growId', uName);
-                loginButton.textContent = "Login";
-                loginButton.classList.remove("loading"); 
-              }, 2000);
             }
           });
 
