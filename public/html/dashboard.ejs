@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script>
-      // Tambahkan ini di bagian head
-      window.API_BASE_URL = '<%= process.env.API_BASE_URL %>'; // Untuk EJS
-      // atau
-      window.API_BASE_URL = 'http://188.166.215.120:3000'; // Untuk HTML murni
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Login/Signup Form</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <style>
@@ -590,24 +583,6 @@
             const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
 
             if (isUsernameValid && isPasswordValid) {
-              try {
-                  const API_BASE_URL = 'http://188.166.215.120:3000'; // Gunakan config environment jika ada
-                  const response = await fetch(`${API_BASE_URL}/login`, { // Perhatikan penggunaan template literal
-                      method: 'POST',
-                      headers: {
-                         'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({
-                          growId: uName, // Gunakan nama field yang konsisten
-                          password: uPass
-                      })
-                  });
-                  const data = await response.json();
-                  if (!response.ok) {
-                      showValidationError(document.getElementById('loginUsernameError'), data.message || 'Login Failed');
-                      return;
-                  }
-                  else {
                     const loginButton = document.getElementById("loginButton");
                     loginButton.textContent = "Logging in...";
                     loginButton.classList.add("loading");
@@ -619,16 +594,6 @@
                         loginButton.classList.remove("loading"); 
                     }, 2000);
                   }
-              }
-              catch (error) {
-                  console.error('Login Error:', error);
-                  showValidationError(
-                      document.getElementById('loginUsernameError'),
-                      error.message || 'Connection failed'
-                  );
-                  return;
-              }
-            }
           });
 
           form_login.querySelectorAll('input').forEach(input => {
