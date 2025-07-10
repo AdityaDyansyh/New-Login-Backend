@@ -590,30 +590,31 @@
 
             if (isUsernameValid && isPasswordValid) {
               try {
-              const API_BASE_URL = window.API_BASE_URL || 'http://188.166.215.120:3000'; // Gunakan config environment jika ada
-              const response = await fetch(`${API_BASE_URL}/login`, { // Perhatikan penggunaan template literal
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
+                  const API_BASE_URL = window.API_BASE_URL || 'http://188.166.215.120:3000'; // Gunakan config environment jika ada
+                  const response = await fetch(`${API_BASE_URL}/login`, { // Perhatikan penggunaan template literal
+                      method: 'POST',
+                      headers: {
+                         'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
                           growId: uName, // Gunakan nama field yang konsisten
                           password: uPass
-                    })
-              });
-              const data = await response.json();
-              if (!response.ok) {
-                 showValidationError(document.getElementById('loginUsernameError'), data.message || 'Login Failed');
-                 return;
+                      })
+                  });
+                  const data = await response.json();
+                  if (!response.ok) {
+                      showValidationError(document.getElementById('loginUsernameError'), data.message || 'Login Failed');
+                      return;
+                  }
               }
-            }
-            catch (error) {
-    console.error('Login Error:', error);
-    showValidationError(
-      document.getElementById('loginUsernameError'),
-      error.message || 'Connection failed'
-    );
-  }
+              catch (error) {
+                  console.error('Login Error:', error);
+                  showValidationError(
+                      document.getElementById('loginUsernameError'),
+                      error.message || 'Connection failed'
+                  );
+                  return;
+              }
               const loginButton = document.getElementById("loginButton");
               loginButton.textContent = "Logging in...";
               loginButton.classList.add("loading");
