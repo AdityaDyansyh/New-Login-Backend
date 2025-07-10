@@ -569,6 +569,24 @@
 
             
             if (isUsernameValid && isPasswordValid) {
+try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            growid: uName,
+            password: uPass
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          showValidationError(document.getElementById('loginUsernameError'), data.message);
+          return;
+        }
                     const loginButton = document.getElementById("loginButton");
                     loginButton.textContent = "Logging in...";
                     loginButton.classList.add("loading");
