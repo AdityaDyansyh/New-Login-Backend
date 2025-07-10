@@ -576,8 +576,8 @@
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    growid: growidInput.value.trim(),
-                    password: passwordInput.value.trim()
+                    growid: uName,
+                    password: uPass
                   })
                 });
                 const data = await response.json();
