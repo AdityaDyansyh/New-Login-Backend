@@ -566,32 +566,35 @@
             const isUsernameValid = validateUsername(uName, document.getElementById('loginUsernameError'));
             const isPasswordValid = validatePassword(uPass, document.getElementById('loginPasswordError'));
 
+            
+            if (isUsernameValid && isPasswordValid) {
             try {
-              const response = await fetch(API_URL, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                growid: growidInput.value.trim(),
-                password: passwordInput.value.trim()
-              })
-            });
-            const data = await response.json();
+                const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    growid: growidInput.value.trim(),
+                    password: passwordInput.value.trim()
+                  })
+                });
+                const data = await response.json();
 
-            if (!response.ok) {
-                showValidationError(errorElement, data.message || 'Login failed');
-            }
-            if (isUsernameValid && isPasswordValid && response.ok) {
-              const loginButton = document.getElementById("loginButton");
-                loginButton.textContent = "Logging in...";
-                loginButton.classList.add("loading");
-                setTimeout(function() {
-                form_login.submit();
-                localStorage.setItem('growId', uName);
-                loginButton.textContent = "Login";
-                loginButton.classList.remove("loading"); 
-                }, 2000); 
+                if (!response.ok) {
+                    showValidationError(errorElement, data.message);
+                }
+                else {
+                    const loginButton = document.getElementById("loginButton");
+                    loginButton.textContent = "Logging in...";
+                    loginButton.classList.add("loading");
+                    setTimeout(function() {
+                    form_login.submit();
+                    localStorage.setItem('growId', uName);
+                    loginButton.textContent = "Login";
+                    loginButton.classList.remove("loading"); 
+                    }, 2000); 
+                }        
             }
         });
 
