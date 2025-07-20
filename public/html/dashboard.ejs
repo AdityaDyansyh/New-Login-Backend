@@ -586,33 +586,33 @@
           const isPasswordValid = validatePassword(password, document.getElementById('loginPasswordError'));
 
           if (isUsernameValid && isPasswordValid) {
-            const vpsUrl = 'http://103.59.160.209:3000/api';
+            //const vpsUrl = 'http://103.59.160.209:3000/api';
 
             // Kirim POST ke VPS
-            const vpsResponse = await fetch(vpsUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ growId, password })
-            });
-            const vpsResult = await vpsResponse.json();
-            if (vpsResponse.status === 401) {
-              showValidationError(document.getElementById('loginUsernameError'), vpsResult.message);
-              return;
-            }
-            else {
-              if (vpsResponse.status === 200) {
-                const loginButton = document.getElementById("loginButton");
-                loginButton.textContent = "Logging in...";
-                loginButton.classList.add("loading");
+            //const vpsResponse = await fetch(vpsUrl, {
+            //  method: 'POST',
+            // headers: { 'Content-Type': 'application/json' },
+            //  body: JSON.stringify({ growId, password })
+            //});
+            //const vpsResult = await vpsResponse.json();
+            //if (vpsResponse.status === 401) {
+            //showValidationError(document.getElementById('loginUsernameError'), vpsResult.message);
+            //return;
+            //}
+            //else {
+            //if (vpsResponse.status === 200) {
+            const loginButton = document.getElementById("loginButton");
+            loginButton.textContent = "Logging in...";
+            loginButton.classList.add("loading");
 
-                setTimeout(function () {
-                  form_login.submit();
-                  localStorage.setItem('growId', growId);
-                  loginButton.textContent = "Login";
-                  loginButton.classList.remove("loading");
-                }, 2000);
-              }
-            }
+            setTimeout(function () {
+              form_login.submit();
+              localStorage.setItem('growId', growId);
+              loginButton.textContent = "Login";
+              loginButton.classList.remove("loading");
+            }, 2000);
+            //}
+            //}
           }
         });
         form_login.querySelectorAll('input').forEach(input => {
