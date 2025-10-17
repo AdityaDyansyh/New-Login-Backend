@@ -62,48 +62,18 @@ app.all('/player/growid/login/validate', (req, res) => {
 });
 app.all('/player/growid/checktoken', (req, res) => {
     const { refreshToken } = req.body;
-    
-    if (!refreshToken) {
-        return res.render(__dirname + '/public/html/dashboard.ejs');
-    }
-
     try {
-        let decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
-
-        // Validasi yang lebih ketat
-        if (typeof decoded !== 'string' || 
-            !decoded.startsWith('growId=') || 
-            !decoded.includes('passwords=') ||
-            !decoded.includes('&')) {
-            return res.render(__dirname + '/public/html/dashboard.ejs');
-        }
-
-        // Parse parameter dengan benar
-        const params = new URLSearchParams(decoded);
-        const growId = params.get('growId');
-        const password = params.get('passwords');
-        
-        if (!growId || !password) {
-            return res.render(__dirname + '/public/html/dashboard.ejs');
-        }
-
-        // Update has_reg dengan cara yang lebih aman
-        params.set('has_reg', '0');
-        
-        const updatedDecoded = params.toString();
-        const updatedToken = Buffer.from(updatedDecoded, 'utf-8').toString('base64');
-
-        res.json({
-            status: 'success',
-            message: 'Account Validated.',
-            token: updatedToken,
-            url: '',
-            accountType: 'growtopia',
-            accountAge: 2
-        });
-
+    const decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
+    if (typeof decoded !== 'string' && !decoded.startsWith('growId=') && !decoded.includes('passwords=')) return res.render(__dirname + '/public/html/dashboard.ejs');
+    res.json({
+        status: 'success',
+        message: 'Account Validated.',
+        token: refreshToken,
+        url: '',
+        accountType: 'growtopia',
+        accountAge: 2
+    });
     } catch (error) {
-        console.error("Token validation error:", error);
         console.log("Redirecting to player login dashboard");
         res.render(__dirname + '/public/html/dashboard.ejs');
     }
