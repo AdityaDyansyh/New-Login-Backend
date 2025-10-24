@@ -64,11 +64,13 @@ app.all('/player/growid/checktoken', (req, res) => {
     const { refreshToken } = req.body;
     try {
     const decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
+    const modifiedToken = decodedToken.replace(/has_reg=1/g, 'has_reg=0');
     if (typeof decoded !== 'string' && !decoded.startsWith('growId=') && !decoded.includes('passwords=')) return res.render(__dirname + '/public/html/dashboard.ejs');
+    const newRefreshToken = Buffer.from(modifiedToken).toString('base64');
     res.json({
         status: 'success',
         message: 'Account Validated.',
-        token: refreshToken,
+        token: newRefreshToken,
         url: '',
         accountType: 'growtopia',
         accountAge: 2
