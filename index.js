@@ -63,19 +63,14 @@ app.all('/player/growid/login/validate', (req, res) => {
 app.all('/player/growid/checktoken', (req, res) => {
     const { refreshToken } = req.body;
     try {
-        // Decode token
         const decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
         
-        // Perbaikan: gunakan variable 'decoded', bukan 'decodedToken'
         const modifiedToken = decoded.replace(/has_reg=1/g, 'has_reg=0');
         
-        // Perbaikan: cek format token yang benar
-        // Token format: _token={...}&growId=...&password=...
         if (!decoded.includes('growId=') || !decoded.includes('password=')) {
             return res.render(__dirname + '/public/html/dashboard.ejs');
         }
         
-        // Encode kembali
         const newRefreshToken = Buffer.from(modifiedToken).toString('base64');
         
         res.send(
