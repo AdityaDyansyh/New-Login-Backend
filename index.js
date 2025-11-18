@@ -52,9 +52,9 @@ app.all('/player/growid/login/validate', (req, res) => {
     let tokenData = `_token=${_token}&growId=${growId}&password=${password}&email_reg=${email}`;
 
     if (email) {
-        tokenData += `&has_reg=1`;
+        tokenData += `&has_reg=1&referral_code=${referral}`;
     } else {
-        tokenData += `&has_reg=0&referral_code=${referral}`;
+        tokenData += `&has_reg=0`;
     }
 
     const token = Buffer.from(tokenData).toString('base64');
