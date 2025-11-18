@@ -47,19 +47,26 @@ app.all('/player/login/dashboard', function (req, res) {
     res.render(__dirname + '/public/html/dashboard.ejs', {data: tData});
 });
 app.all('/player/growid/login/validate', (req, res) => {
-    const _token = req.body._token;
-    const growId = req.body.growId;
-    const password = req.body.password;
-    const email = req.body.email;
-    const referral = req.body.referral;
+    const { _token, growId, password, email, referral } = req.body;
 
-    const tokenData = `_token=${_token}&growId=${growId}&password=${password}&email_reg=${email}` + 
-                     (email ? '&has_reg=1' : '&has_reg=0&referral_code=${referral}');
-                    
+    let tokenData = `_token=${_token}&growId=${growId}&password=${password}&email_reg=${email}`;
+
+    if (email) {
+        tokenData += `&has_reg=1`;
+    } else {
+        tokenData += `&has_reg=0&referral_code=${referral}`;
+    }
+
     const token = Buffer.from(tokenData).toString('base64');
-    res.send(
-        `{"status":"success","message":"Account Validated.","token":"${token}","url":"","accountType":"growtopia", "accountAge": 2}`,
-    );
+
+    res.send({
+        status: "success",
+        message: "Account Validated.",
+        token,
+        url: "",
+        accountType: "growtopia",
+        accountAge: 2
+    });
 });
 app.all('/player/growid/checktoken', (req, res) => {
     const { refreshToken } = req.body;
@@ -67,6 +74,7 @@ app.all('/player/growid/checktoken', (req, res) => {
         const decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
         
         const modifiedToken = decoded.replace(/has_reg=1/g, 'has_reg=0');
+        modifiedToken = modifiedToken.replace(/referral_code=([^&]+)/g, 'referral_code=');
         
         if (!decoded.includes('growId=') || !decoded.includes('password=')) {
             return res.render(__dirname + '/public/html/dashboard.ejs');
