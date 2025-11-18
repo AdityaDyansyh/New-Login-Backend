@@ -51,9 +51,10 @@ app.all('/player/growid/login/validate', (req, res) => {
     const growId = req.body.growId;
     const password = req.body.password;
     const email = req.body.email;
+    const referral = req.body.referral;
 
     const tokenData = `_token=${_token}&growId=${growId}&password=${password}&email_reg=${email}` + 
-                     (email ? '&has_reg=1' : '&has_reg=0');
+                     (email ? '&has_reg=1' : '&has_reg=0&referral_code=${referral}');
                     
     const token = Buffer.from(tokenData).toString('base64');
     res.send(
