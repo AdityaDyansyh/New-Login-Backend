@@ -47,7 +47,7 @@ app.all('/player/login/dashboard', function (req, res) {
     res.render(__dirname + '/public/html/dashboard.ejs', {data: tData});
 });
 app.all('/player/growid/login/validate', (req, res) => {
-    const { _token, growId, password, email, referral } = req.body;
+    const { _token, growId, password, email } = req.body;
 
     let tokenData = `_token=${_token}&growId=${growId}&password=${password}&email_reg=${email}`;
 
