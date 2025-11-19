@@ -52,7 +52,7 @@ app.all('/player/growid/login/validate', (req, res) => {
     let tokenData = `_token=${_token}&growId=${growId}&password=${password}&email_reg=${email}`;
 
     if (email) {
-        tokenData += `&has_reg=1&referral_code=${referral}`;
+        tokenData += `&has_reg=1`;
     } else {
         tokenData += `&has_reg=0`;
     }
@@ -74,7 +74,6 @@ app.all('/player/growid/checktoken', (req, res) => {
         const decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
         
         const modifiedToken = decoded.replace(/has_reg=1/g, 'has_reg=0');
-        modifiedToken = modifiedToken.replace(/referral_code=([^&]+)/g, 'referral_code=');
         
         if (!decoded.includes('growId=') || !decoded.includes('password=')) {
             return res.render(__dirname + '/public/html/dashboard.ejs');
