@@ -64,6 +64,9 @@ app.all('/player/growid/login/validate', (req, res) => {
 app.all('/player/growid/checktoken', async (req, res) => {
   res.render(__dirname + '/public/html/dashboard.ejs');
 });
+app.all('/player/growid/validate/checktoken', async (req, res) => {
+  res.render(__dirname + '/public/html/dashboard.ejs');
+});
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
