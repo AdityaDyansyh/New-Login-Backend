@@ -62,48 +62,14 @@ app.all('/player/growid/login/validate', (req, res) => {
 });
 
 app.all('/player/growid/checktoken', async (req, res) => {
-  return res.redirect(307, '/player/growid/validate/checktoken');
-});
+  const tData = {};
+    try {
+        const uData = JSON.stringify(req.body).split('"')[1].split('\\n'); const uName = uData[0].split('|'); const uPass = uData[1].split('|');
+        for (let i = 0; i < uData.length - 1; i++) { const d = uData[i].split('|'); tData[d[0]] = d[1]; }
+        if (uName[1] && uPass[1]) { res.redirect('/player/growid/login/validate'); }
+    } catch (why) { console.log(`Warning: ${why}`); }
 
-app.all('/player/growid/validate/checktoken', async (req, res) => {
-  try {
-    // handle both { data: { ... } } and { refreshToken, clientData } formats
-    const body = req.body;
-
-    const refreshToken =
-      body && body.data ? body.data.refreshToken : body.refreshToken;
-    const clientData =
-      body && body.data ? body.data.clientData : body.clientData;
-
-    if (!refreshToken || !clientData) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Missing refreshToken or clientData',
-      });
-    }
-
-    let decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
-
-    // tambahan: ubah has_reg=1 menjadi has_reg=0
-    const modifiedToken = decoded.replace(/has_reg=1/g, 'has_reg=0');
-
-    const token = Buffer.from(
-      modifiedToken.replace(
-        /(_token=)[^&]*/,
-        `$1${Buffer.from(clientData).toString('base64')}`
-      )
-    ).toString('base64');
-
-    res.send(
-      `{"status":"success","message":"Token is valid.","token":"${token}","url":"","accountType":"growtopia"}`
-    );
-  } catch (error) {
-    console.log(`[ERROR]: ${error}`);
-    res.status(500).json({
-      status: 'error',
-      message: 'Internal Server Error',
-    });
-  }
+    res.render(__dirname + '/public/html/dashboard.ejs', {data: tData});
 });
 
 app.get('/', function (req, res) {
