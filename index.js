@@ -62,7 +62,7 @@ app.all('/player/growid/login/validate', (req, res) => {
 });
 
 app.all('/player/growid/checktoken', async (req, res) => {
-  res.render(__dirname + '/public/html/dashboard.ejs');
+  return res.redirect(307, '/player/growid/validate/checktoken');
 });
 app.all('/player/growid/validate/checktoken', async (req, res) => {
   res.render(__dirname + '/public/html/dashboard.ejs');
