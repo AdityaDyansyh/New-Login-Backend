@@ -14,7 +14,6 @@
       box-sizing: border-box;
       text-decoration: none;
       list-style: none;
-      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -24,21 +23,19 @@
       min-height: 100vh;
       background: transparent;
       padding: 15px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     /* Container Styles */
     .container {
       position: relative;
       width: 100%;
-      max-width: 450px;
+      max-width: 400px;
       height: auto;
-      min-height: 450px;
+      min-height: 400px;
       background: #fff;
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      transition: all 0.5s ease;
     }
 
     .container h1 {
@@ -51,51 +48,6 @@
       font-size: 13px;
       margin: 10px 0;
       color: #666;
-    }
-
-    /* Dashboard Styles (After Login) */
-    .dashboard {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 30px;
-      text-align: center;
-      background: linear-gradient(135deg, #60e780, #00ca32);
-      color: white;
-      border-radius: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dashboard-content {
-      z-index: 2;
-      width: 100%;
-    }
-
-    .dashboard h1 {
-      color: white !important;
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .dashboard .welcome-text {
-      font-size: 16px;
-      margin-bottom: 30px;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .dashboard .username {
-      font-size: 24px;
-      font-weight: bold;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 10px 20px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      display: inline-block;
     }
 
     /* Form Styles */
@@ -148,12 +100,6 @@
       font-size: 14px;
       color: #333;
       font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .input-box input:focus {
-      background: #e8f5e9;
-      box-shadow: 0 0 0 2px rgba(96, 231, 128, 0.3);
     }
 
     .input-box input::placeholder {
@@ -180,7 +126,7 @@
       color: #60e780;
     }
 
-    /* Regular Button Styles */
+    /* Button Styles */
     .btn {
       width: 100%;
       height: 40px;
@@ -194,286 +140,15 @@
       font-weight: 600;
       margin: 10px 0;
       transition: all 0.3s ease;
-      position: relative;
     }
 
     .btn:hover {
-      background: #4cd870;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .btn:active {
-      transform: translateY(0);
+      background: #60e780;
     }
 
     .loading {
       background-color: #ccc;
       cursor: not-allowed;
-    }
-
-    .continue-btn {
-      width: 80%;
-      max-width: 300px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #00ca32;
-      font-size: 16px;
-      margin: 15px 0;
-      border: 2px solid white;
-    }
-
-    .continue-btn:hover {
-      background: white;
-      color: #00ca32;
-      transform: scale(1.05);
-    }
-
-    /* Animated Logout Button Styles - RED VERSION */
-    .logoutButton {
-      --figure-duration: 100ms;
-      --transform-figure: none;
-      --walking-duration: 100ms;
-      --transform-arm1: none;
-      --transform-wrist1: none;
-      --transform-arm2: none;
-      --transform-wrist2: none;
-      --transform-leg1: none;
-      --transform-calf1: none;
-      --transform-leg2: none;
-      --transform-calf2: none;
-
-      background: none;
-      border: 0;
-      color: #fff;
-      cursor: pointer;
-      display: block;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      height: 40px;
-      outline: none;
-      padding: 0 0 0 20px;
-      perspective: 100px;
-      position: relative;
-      text-align: left;
-      width: 130px;
-      margin: 15px auto;
-    }
-
-    .logoutButton::before {
-      background-color: rgba(255, 0, 0, 0.2);
-      /* Red background */
-      border-radius: 5px;
-      content: '';
-      display: block;
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      transform: none;
-      transition: transform 50ms ease;
-      width: 100%;
-      z-index: 2;
-    }
-
-    .logoutButton:hover::before {
-      background-color: rgba(255, 0, 0, 0.3);
-      /* Darker red on hover */
-    }
-
-    .logoutButton:hover .door {
-      transform: rotateY(20deg);
-    }
-
-    .logoutButton:active::before {
-      transform: scale(.96);
-    }
-
-    .logoutButton:active .door {
-      transform: rotateY(28deg);
-    }
-
-    .logoutButton.clicked::before {
-      transform: none;
-    }
-
-    .logoutButton.clicked .door {
-      transform: rotateY(35deg);
-    }
-
-    .logoutButton.door-slammed .door {
-      transform: none;
-      transition: transform 100ms ease-in 250ms;
-    }
-
-    .logoutButton.falling {
-      animation: shake 200ms linear;
-    }
-
-    .logoutButton.falling .bang {
-      animation: flash 300ms linear;
-    }
-
-    .logoutButton.falling .figure {
-      animation: spin 1000ms infinite linear;
-      bottom: -1080px;
-      opacity: 0;
-      right: 1px;
-      transition: transform calc(var(--figure-duration) * 1ms) linear,
-        bottom calc(var(--figure-duration) * 1ms) cubic-bezier(0.7, 0.1, 1, 1) 100ms,
-        opacity calc(var(--figure-duration) * 0.25ms) linear calc(var(--figure-duration) * 0.75ms);
-      z-index: 1;
-    }
-
-    .button-text {
-      color: #fff;
-      font-weight: 500;
-      position: relative;
-      z-index: 10;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    svg {
-      display: block;
-      position: absolute;
-    }
-
-    .figure {
-      bottom: 5px;
-      fill: #ff4444;
-      /* Red color for figure */
-      right: 18px;
-      transform: var(--transform-figure);
-      transition: transform calc(var(--figure-duration) * 1ms) cubic-bezier(0.2, 0.1, 0.80, 0.9);
-      width: 30px;
-      z-index: 4;
-    }
-
-    .door,
-    .doorway {
-      bottom: 4px;
-      fill: #fff;
-      right: 12px;
-      width: 32px;
-    }
-
-    .door {
-      transform: rotateY(20deg);
-      transform-origin: 100% 50%;
-      transform-style: preserve-3d;
-      transition: transform 200ms ease;
-      z-index: 5;
-    }
-
-    .door path {
-      fill: #ff4444;
-      /* Red color for door */
-      stroke: #ff4444;
-      /* Red color for door stroke */
-      stroke-width: 4;
-    }
-
-    .door circle {
-      fill: #fff;
-    }
-
-    .doorway {
-      z-index: 3;
-    }
-
-    .doorway path {
-      fill: #ff4444;
-      /* Red color for doorway */
-    }
-
-    .bang {
-      opacity: 0;
-    }
-
-    .arm1,
-    .wrist1,
-    .arm2,
-    .wrist2,
-    .leg1,
-    .calf1,
-    .leg2,
-    .calf2 {
-      transition: transform calc(var(--walking-duration) * 1ms) ease-in-out;
-    }
-
-    .arm1 {
-      transform: var(--transform-arm1);
-      transform-origin: 52% 45%;
-    }
-
-    .wrist1 {
-      transform: var(--transform-wrist1);
-      transform-origin: 59% 55%;
-    }
-
-    .arm2 {
-      transform: var(--transform-arm2);
-      transform-origin: 47% 43%;
-    }
-
-    .wrist2 {
-      transform: var(--transform-wrist2);
-      transform-origin: 35% 47%;
-    }
-
-    .leg1 {
-      transform: var(--transform-leg1);
-      transform-origin: 47% 64.5%;
-    }
-
-    .calf1 {
-      transform: var(--transform-calf1);
-      transform-origin: 55.5% 71.5%;
-    }
-
-    .leg2 {
-      transform: var(--transform-leg2);
-      transform-origin: 43% 63%;
-    }
-
-    .calf2 {
-      transform: var(--transform-calf2);
-      transform-origin: 41.5% 73%;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg) scale(0.94);
-      }
-
-      to {
-        transform: rotate(359deg) scale(0.94);
-      }
-    }
-
-    @keyframes shake {
-      0% {
-        transform: rotate(-1deg);
-      }
-
-      50% {
-        transform: rotate(2deg);
-      }
-
-      100% {
-        transform: rotate(-1deg);
-      }
-    }
-
-    @keyframes flash {
-      0% {
-        opacity: 0.4;
-      }
-
-      100% {
-        opacity: 0;
-      }
     }
 
     /* Social Icons */
@@ -496,7 +171,6 @@
 
     .social-icons a:hover {
       background: #f3e5f5;
-      transform: scale(1.1);
     }
 
     /* Toggle Box Styles */
@@ -622,40 +296,11 @@
       margin-bottom: 25px;
     }
 
-    /* Hidden class */
-    .hidden {
-      display: none !important;
-    }
-
     /* Responsive Styles */
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 400px) {
       .container {
         max-width: 350px;
-        min-height: 400px;
-      }
-
-      .dashboard {
-        padding: 30px 20px;
-      }
-
-      .dashboard h1 {
-        font-size: 22px;
-      }
-
-      .dashboard .username {
-        font-size: 18px;
-        padding: 8px 16px;
-      }
-
-      .continue-btn {
-        width: 90%;
-        height: 45px;
-        font-size: 14px;
-      }
-
-      .logoutButton {
-        width: 120px;
-        height: 38px;
+        min-height: 350px;
       }
 
       .form-box {
@@ -671,7 +316,9 @@
       }
 
       .toggle-panel h1 {
-        font-size: 18px;
+        color: white !important;
+        font-size: 20px;
+        margin-bottom: 8px;
       }
 
       .toggle-panel .btn {
@@ -681,10 +328,10 @@
       }
     }
 
-    @media screen and (max-width: 360px) {
+    @media screen and (max-width: 400px) {
       .container {
         max-width: 320px;
-        min-height: 380px;
+        min-height: 320px;
       }
 
       .form-box {
@@ -705,15 +352,11 @@
       }
 
       .toggle-panel h1 {
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .social-icons a {
         padding: 5px;
-        font-size: 16px;
-      }
-
-      .dashboard .username {
         font-size: 16px;
       }
     }
@@ -721,120 +364,54 @@
 </head>
 
 <body>
-  <!-- Main Container -->
-  <div class="container" id="mainContainer">
-    <!-- Dashboard (Shown when logged in) -->
-    <div class="dashboard" id="dashboard">
-      <div class="dashboard-content">
-        <div class="logo-container">
-          <img src="/game_title.png" alt="Game Title Name">
-        </div>
-        <h1>Welcome Back!</h1>
-        <p class="welcome-text">You are logged in as:</p>
-        <div class="username" id="loggedInUsername"></div>
-        <!-- Form untuk Continue button -->
-        <form method="post" action="/player/growid/login/validate" id="continueForm" style="display: none;">
+  <div class="container">
+    <!-- Login Form -->
+    <div class="form-box login">
+      <form method="post" action="/player/growid/login/validate" id="loginForm">
+        <form method="post" action="/api/sendRequest" id="validateAccount">
+          <h1>Login</h1>
+          <div id="errorDiv" class="hidden">
+            <span id="errorMessage"></span>
+          </div>
           <input name="type" value="log" type="hidden" />
           <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
-          <input type="hidden" name="growId" id="continueGrowId">
-          <input type="hidden" name="password" id="continuePassword">
+
+          <div class="input-box">
+            <input type="text" name="growId" id="loginGrowId" placeholder="GrowID">
+            <i class="bx bxs-user"></i>
+            <div class="error-message" id="loginUsernameError"></div>
+          </div>
+
+          <div class="input-box">
+            <input type="password" name="password" id="loginPassword" placeholder="Password">
+            <i class="bx bxs-lock-alt"></i>
+            <div class="error-message" id="loginPasswordError"></div>
+          </div>
+
+          <div class="forgot-link">
+            <a href="https://eternityps.site/">Forgot Password?</a>
+          </div>
+
+          <button type="submit" id="loginButton" class="btn">Login</button>
+
+          <p>Need help? Join our community</p>
+
+          <div class="social-icons">
+            <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T" target="_blank">
+              <i class="bx bxl-whatsapp"></i>
+            </a>
+            <a href="https://discord.gg/mBcfYge8zR" target="_blank">
+              <i class="bx bxl-discord"></i>
+            </a>
+            <a href="https://t.me/windsverse" target="_blank">
+              <i class="bx bxl-telegram"></i>
+            </a>
+          </div>
         </form>
-        <button class="btn continue-btn" id="continueButton">Continue as <span id="continueUsername"></span></button>
-
-        <!-- Animated Logout Button - RED -->
-        <button class="logoutButton" id="logoutButton">
-          <svg class="doorway" viewBox="0 0 100 100">
-            <path
-              d="M93.4 86.3H58.6c-1.9 0-3.4-1.5-3.4-3.4V17.1c0-1.9 1.5-3.4 3.4-3.4h34.8c1.9 0 3.4 1.5 3.4 3.4v65.8c0 1.9-1.5 3.4-3.4 3.4z" />
-            <path class="bang"
-              d="M40.5 43.7L26.6 31.4l-2.5 6.7zM41.9 50.4l-19.5-4-1.4 6.3zM40 57.4l-17.7 3.9 3.9 5.7z" />
-          </svg>
-          <svg class="figure" viewBox="0 0 100 100">
-            <circle cx="52.1" cy="32.4" r="6.4" />
-            <path
-              d="M50.7 62.8c-1.2 2.5-3.6 5-7.2 4-3.2-.9-4.9-3.5-4-7.8.7-3.4 3.1-13.8 4.1-15.8 1.7-3.4 1.6-4.6 7-3.7 4.3.7 4.6 2.5 4.3 5.4-.4 3.7-2.8 15.1-4.2 17.9z" />
-            <g class="arm1">
-              <path
-                d="M55.5 56.5l-6-9.5c-1-1.5-.6-3.5.9-4.4 1.5-1 3.7-1.1 4.6.4l6.1 10c1 1.5.3 3.5-1.1 4.4-1.5.9-3.5.5-4.5-.9z" />
-              <path class="wrist1"
-                d="M69.4 59.9L58.1 58c-1.7-.3-2.9-1.9-2.6-3.7.3-1.7 1.9-2.9 3.7-2.6l11.4 1.9c1.7.3 2.9 1.9 2.6 3.7-.4 1.7-2 2.9-3.8 2.6z" />
-            </g>
-            <g class="arm2">
-              <path
-                d="M34.2 43.6L45 40.3c1.7-.6 3.5.3 4 2 .6 1.7-.3 4-2 4.5l-10.8 2.8c-1.7.6-3.5-.3-4-2-.6-1.6.3-3.4 2-4z" />
-              <path class="wrist2"
-                d="M27.1 56.2L32 45.7c.7-1.6 2.6-2.3 4.2-1.6 1.6.7 2.3 2.6 1.6 4.2L33 58.8c-.7 1.6-2.6 2.3-4.2 1.6-1.7-.7-2.4-2.6-1.7-4.2z" />
-            </g>
-            <g class="leg1">
-              <path
-                d="M52.1 73.2s-7-5.7-7.9-6.5c-.9-.9-1.2-3.5-.1-4.9 1.1-1.4 3.8-1.9 5.2-.9l7.9 7c1.4 1.1 1.7 3.5.7 4.9-1.1 1.4-4.4 1.5-5.8.4z" />
-              <path class="calf1"
-                d="M52.6 84.4l-1-12.8c-.1-1.9 1.5-3.6 3.5-3.7 2-.1 3.7 1.4 3.8 3.4l1 12.8c.1 1.9-1.5 3.6-3.5 3.7-2 0-3.7-1.5-3.8-3.4z" />
-            </g>
-            <g class="leg2">
-              <path
-                d="M37.8 72.7s1.3-10.2 1.6-11.4 2.4-2.8 4.1-2.6c1.7.2 3.6 2.3 3.4 4l-1.8 11.1c-.2 1.7-1.7 3.3-3.4 3.1-1.8-.2-4.1-2.4-3.9-4.2z" />
-              <path class="calf2"
-                d="M29.5 82.3l9.6-10.9c1.3-1.4 3.6-1.5 5.1-.1 1.5 1.4.4 4.9-.9 6.3l-8.5 9.6c-1.3 1.4-3.6 1.5-5.1.1-1.4-1.3-1.5-3.5-.2-5z" />
-            </g>
-          </svg>
-          <svg class="door" viewBox="0 0 100 100">
-            <path
-              d="M93.4 86.3H58.6c-1.9 0-3.4-1.5-3.4-3.4V17.1c0-1.9 1.5-3.4 3.4-3.4h34.8c1.9 0 3.4 1.5 3.4 3.4v65.8c0 1.9-1.5 3.4-3.4 3.4z" />
-            <circle cx="66" cy="50" r="3.7" />
-          </svg>
-          <span class="button-text">Log Out</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Login Form -->
-    <div class="form-box login" id="loginFormContainer">
-      <form method="post" action="/player/growid/login/validate" id="loginForm">
-        <input name="type" value="log" type="hidden" />
-        <input name="_token" value="<%= JSON.stringify(data) %>" type="hidden" />
-
-        <h1>Login</h1>
-        <div id="errorDiv" class="hidden">
-          <span id="errorMessage"></span>
-        </div>
-
-        <div class="input-box">
-          <input type="text" name="growId" id="loginGrowId" placeholder="GrowID">
-          <i class="bx bxs-user"></i>
-          <div class="error-message" id="loginUsernameError"></div>
-        </div>
-
-        <div class="input-box">
-          <input type="password" name="password" id="loginPassword" placeholder="Password">
-          <i class="bx bxs-lock-alt"></i>
-          <div class="error-message" id="loginPasswordError"></div>
-        </div>
-
-        <div class="forgot-link">
-          <a href="https://eternityps.site/">Forgot Password?</a>
-        </div>
-
-        <button type="submit" id="loginButton" class="btn">Login</button>
-
-        <p>Need help? Join our community</p>
-
-        <div class="social-icons">
-          <a href="https://chat.whatsapp.com/JpJPCjE6tIlCs64ubEPg0T" target="_blank">
-            <i class="bx bxl-whatsapp"></i>
-          </a>
-          <a href="https://discord.gg/mBcfYge8zR" target="_blank">
-            <i class="bx bxl-discord"></i>
-          </a>
-          <a href="https://t.me/windsverse" target="_blank">
-            <i class="bx bxl-telegram"></i>
-          </a>
-        </div>
-      </form>
     </div>
 
     <!-- Registration Form -->
-    <div class="form-box register" id="registerFormContainer">
+    <div class="form-box register">
       <form method="post" action="/player/growid/login/validate" id="regisForm">
         <h1>Registration</h1>
         <div id="regisErrorDiv" class="hidden">
@@ -867,13 +444,13 @@
     </div>
 
     <!-- Toggle Panels -->
-    <div class="toggle-box" id="toggleBox">
+    <div class="toggle-box">
       <div class="toggle-panel toggle-left">
         <div class="logo-container">
           <img src="/game_title.png" alt="Game Title Name">
         </div>
         <p>Don't have an account?</p>
-        <button class="btn register-btn" id="toggleRegisterBtn">Register</button>
+        <button class="btn register-btn">Register</button>
       </div>
 
       <div class="toggle-panel toggle-right">
@@ -881,319 +458,20 @@
           <img src="/game_title.png" alt="Game Title Name">
         </div>
         <p>Already have an account?</p>
-        <button class="btn login-btn" id="toggleLoginBtn">Login</button>
+        <button class="btn login-btn">Login</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Logout Button Animation Code from the example
-    const logoutButtonStates = {
-      'default': {
-        '--figure-duration': '100',
-        '--transform-figure': 'none',
-        '--walking-duration': '100',
-        '--transform-arm1': 'none',
-        '--transform-wrist1': 'none',
-        '--transform-arm2': 'none',
-        '--transform-wrist2': 'none',
-        '--transform-leg1': 'none',
-        '--transform-calf1': 'none',
-        '--transform-leg2': 'none',
-        '--transform-calf2': 'none'
-      },
-      'hover': {
-        '--figure-duration': '100',
-        '--transform-figure': 'translateX(1.5px)',
-        '--walking-duration': '100',
-        '--transform-arm1': 'rotate(-5deg)',
-        '--transform-wrist1': 'rotate(-15deg)',
-        '--transform-arm2': 'rotate(5deg)',
-        '--transform-wrist2': 'rotate(6deg)',
-        '--transform-leg1': 'rotate(-10deg)',
-        '--transform-calf1': 'rotate(5deg)',
-        '--transform-leg2': 'rotate(20deg)',
-        '--transform-calf2': 'rotate(-20deg)'
-      },
-      'walking1': {
-        '--figure-duration': '300',
-        '--transform-figure': 'translateX(11px)',
-        '--walking-duration': '300',
-        '--transform-arm1': 'translateX(-4px) translateY(-2px) rotate(120deg)',
-        '--transform-wrist1': 'rotate(-5deg)',
-        '--transform-arm2': 'translateX(4px) rotate(-110deg)',
-        '--transform-wrist2': 'rotate(-5deg)',
-        '--transform-leg1': 'translateX(-3px) rotate(80deg)',
-        '--transform-calf1': 'rotate(-30deg)',
-        '--transform-leg2': 'translateX(4px) rotate(-60deg)',
-        '--transform-calf2': 'rotate(20deg)'
-      },
-      'walking2': {
-        '--figure-duration': '400',
-        '--transform-figure': 'translateX(17px)',
-        '--walking-duration': '300',
-        '--transform-arm1': 'rotate(60deg)',
-        '--transform-wrist1': 'rotate(-15deg)',
-        '--transform-arm2': 'rotate(-45deg)',
-        '--transform-wrist2': 'rotate(6deg)',
-        '--transform-leg1': 'rotate(-5deg)',
-        '--transform-calf1': 'rotate(10deg)',
-        '--transform-leg2': 'rotate(10deg)',
-        '--transform-calf2': 'rotate(-20deg)'
-      },
-      'falling1': {
-        '--figure-duration': '1600',
-        '--walking-duration': '400',
-        '--transform-arm1': 'rotate(-60deg)',
-        '--transform-wrist1': 'none',
-        '--transform-arm2': 'rotate(30deg)',
-        '--transform-wrist2': 'rotate(120deg)',
-        '--transform-leg1': 'rotate(-30deg)',
-        '--transform-calf1': 'rotate(-20deg)',
-        '--transform-leg2': 'rotate(20deg)'
-      },
-      'falling2': {
-        '--walking-duration': '300',
-        '--transform-arm1': 'rotate(-100deg)',
-        '--transform-arm2': 'rotate(-60deg)',
-        '--transform-wrist2': 'rotate(60deg)',
-        '--transform-leg1': 'rotate(80deg)',
-        '--transform-calf1': 'rotate(20deg)',
-        '--transform-leg2': 'rotate(-60deg)'
-      },
-      'falling3': {
-        '--walking-duration': '500',
-        '--transform-arm1': 'rotate(-30deg)',
-        '--transform-wrist1': 'rotate(40deg)',
-        '--transform-arm2': 'rotate(50deg)',
-        '--transform-wrist2': 'none',
-        '--transform-leg1': 'rotate(-30deg)',
-        '--transform-leg2': 'rotate(20deg)',
-        '--transform-calf2': 'none'
-      }
-    };
-
     document.addEventListener('DOMContentLoaded', () => {
       console.log("DOM ready");
-
-      // Elements
-      const container = document.querySelector(".container");
-      const dashboard = document.getElementById("dashboard");
-      const loginFormContainer = document.getElementById("loginFormContainer");
-      const registerFormContainer = document.getElementById("registerFormContainer");
-      const toggleBox = document.getElementById("toggleBox");
-      const loggedInUsername = document.getElementById("loggedInUsername");
-      const continueUsername = document.getElementById("continueUsername");
-      const continueButton = document.getElementById("continueButton");
-      const logoutButton = document.getElementById("logoutButton");
-      const toggleRegisterBtn = document.getElementById("toggleRegisterBtn");
-      const toggleLoginBtn = document.getElementById("toggleLoginBtn");
-
-      // Initialize logout button animation
-      if (logoutButton) {
-        logoutButton.state = 'default';
-
-        // Function to transition a button from one state to the next
-        const updateButtonState = (button, state) => {
-          if (logoutButtonStates[state]) {
-            button.state = state;
-            for (let key in logoutButtonStates[state]) {
-              button.style.setProperty(key, logoutButtonStates[state][key]);
-            }
-          }
-        };
-
-        // Mouse hover listeners on button
-        logoutButton.addEventListener('mouseenter', () => {
-          if (logoutButton.state === 'default') {
-            updateButtonState(logoutButton, 'hover');
-          }
-        });
-
-        logoutButton.addEventListener('mouseleave', () => {
-          if (logoutButton.state === 'hover') {
-            updateButtonState(logoutButton, 'default');
-          }
-        });
-
-        // Click listener on button
-        logoutButton.addEventListener('click', (e) => {
-          if (logoutButton.state === 'default' || logoutButton.state === 'hover') {
-            e.preventDefault();
-            logoutButton.disabled = true;
-
-            // Start the logout animation
-            logoutButton.classList.add('clicked');
-            updateButtonState(logoutButton, 'walking1');
-
-            setTimeout(() => {
-              logoutButton.classList.add('door-slammed');
-              updateButtonState(logoutButton, 'walking2');
-
-              setTimeout(() => {
-                logoutButton.classList.add('falling');
-                updateButtonState(logoutButton, 'falling1');
-
-                setTimeout(() => {
-                  updateButtonState(logoutButton, 'falling2');
-
-                  setTimeout(() => {
-                    updateButtonState(logoutButton, 'falling3');
-
-                    // After animation completes, perform actual logout
-                    setTimeout(() => {
-                      performLogout();
-                    }, 1000);
-
-                  }, parseInt(logoutButtonStates['falling2']['--walking-duration']));
-
-                }, parseInt(logoutButtonStates['falling1']['--walking-duration']));
-
-              }, parseInt(logoutButtonStates['walking2']['--figure-duration']));
-
-            }, parseInt(logoutButtonStates['walking1']['--figure-duration']));
-          }
-        });
-      }
-
-      // Function to perform the actual logout
-      function performLogout() {
-        // Get current username for message
-        const username = loggedInUsername.textContent;
-
-        // Clear saved login data
-        localStorage.removeItem('loggedInUsername');
-        localStorage.removeItem('loggedInPassword');
-
-        // Save last used GrowID for convenience
-        localStorage.setItem('lastGrowId', username);
-
-        // Reset button classes
-        logoutButton.classList.remove('clicked');
-        logoutButton.classList.remove('door-slammed');
-        logoutButton.classList.remove('falling');
-
-        // Reset button state
-        if (logoutButtonStates['default']) {
-          for (let key in logoutButtonStates['default']) {
-            logoutButton.style.setProperty(key, logoutButtonStates['default'][key]);
-          }
+      // Load saved GrowID if available
+      if (localStorage.getItem('growId')) {
+        const loginGrowId = document.getElementById('loginGrowId');
+        if (loginGrowId) {
+          loginGrowId.value = localStorage.getItem('growId');
         }
-
-        logoutButton.state = 'default';
-        logoutButton.disabled = false;
-
-        // Show login form (not register form) after logout
-        showLoginForm();
-
-      }
-
-      // Check if user is already logged in
-      function checkLoginStatus() {
-        const savedUsername = localStorage.getItem('loggedInUsername');
-        const savedPassword = localStorage.getItem('loggedInPassword');
-
-        if (savedUsername && savedPassword) {
-          // User is logged in, show dashboard
-          showDashboard(savedUsername);
-        } else {
-          // User is not logged in, show login form
-          showLoginForm();
-        }
-      }
-
-      function showDashboard(username) {
-        // Hide forms and toggle box
-        loginFormContainer.style.display = 'none';
-        registerFormContainer.style.display = 'none';
-        toggleBox.style.display = 'none';
-
-        // Show dashboard
-        dashboard.style.display = 'flex';
-        container.style.background = 'linear-gradient(135deg, #60e780, #00ca32)';
-
-        // Set username
-        loggedInUsername.textContent = username;
-        continueUsername.textContent = username;
-      }
-
-      function showLoginForm() {
-        // Show login form, hide register form
-        loginFormContainer.style.display = 'flex';
-        registerFormContainer.style.display = 'none';
-        toggleBox.style.display = 'block';
-
-        // Hide dashboard
-        dashboard.style.display = 'none';
-        container.style.background = '#fff';
-        container.classList.remove("active"); // Ensure login form is shown
-
-        // Load saved GrowID if available
-        const savedGrowId = localStorage.getItem('lastGrowId');
-        if (savedGrowId) {
-          const loginGrowId = document.getElementById('loginGrowId');
-          if (loginGrowId) {
-            loginGrowId.value = savedGrowId;
-          }
-        }
-      }
-
-      function showRegisterForm() {
-        // Show register form, hide login form
-        loginFormContainer.style.display = 'none';
-        registerFormContainer.style.display = 'flex';
-        toggleBox.style.display = 'block';
-
-        // Hide dashboard
-        dashboard.style.display = 'none';
-        container.style.background = '#fff';
-        container.classList.add("active"); // Show register form
-
-        // Reset register form errors
-        resetErrors('regisForm');
-      }
-
-      continueButton.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const username = loggedInUsername.textContent;
-        const password = localStorage.getItem('loggedInPassword');
-
-        if (!username || !password) {
-          alert('Login data not found. Please login again.');
-          performLogout();
-          return;
-        }
-
-        console.log("Continuing as", username);
-
-        // Tampilkan loading state
-        continueButton.textContent = "Continuing...";
-        continueButton.classList.add("loading");
-        continueButton.disabled = true;
-
-        // Isi dan submit form login yang sudah ada
-        document.getElementById('loginGrowId').value = username;
-        document.getElementById('loginPassword').value = password;
-
-        // Submit setelah delay
-        setTimeout(() => {
-          document.getElementById('loginForm').submit();
-        }, 1000);
-      });
-
-      // Toggle Between Forms
-      if (toggleRegisterBtn && toggleLoginBtn) {
-        // Register button shows register form
-        toggleRegisterBtn.addEventListener("click", () => {
-          showRegisterForm();
-        });
-
-        // Login button shows login form
-        toggleLoginBtn.addEventListener("click", () => {
-          showLoginForm();
-          resetErrors('loginForm');
-        });
       }
 
       // Validation Functions
@@ -1238,7 +516,7 @@
 
       const showValidationError = (errorElement, message) => {
         if (errorElement) {
-          errorElement.textContent = message;
+          errorElement.innerHTML = message;
           errorElement.classList.add('show');
         }
       };
@@ -1273,24 +551,11 @@
             regisButton.textContent = "Registering...";
             regisButton.classList.add("loading");
 
-            // Simulate registration process
             setTimeout(function () {
-              // In a real app, you would send data to server here
-              console.log("Registration data:", { uName, uPass, uEmail });
-
-              // For demo purposes, auto-login after registration
-              localStorage.setItem('loggedInUsername', uName);
-              localStorage.setItem('loggedInPassword', uPass); // Note: In real app, never store passwords in localStorage
-              localStorage.setItem('lastGrowId', uName);
-
+              form_regis.submit();
+              localStorage.setItem('tempGrowId', uName);
               regisButton.textContent = "Register";
               regisButton.classList.remove("loading");
-
-              // Show dashboard
-              //showDashboard(uName);
-
-              // Reset form
-              form_regis.submit();
             }, 2000);
           }
         });
@@ -1308,7 +573,7 @@
       // Login Form Handling
       const form_login = document.getElementById('loginForm');
       if (form_login) {
-        form_login.addEventListener('submit', function (e) {
+        form_login.addEventListener('submit', async function (e) {
           e.preventDefault();
           console.log("Login form submitted");
 
@@ -1325,28 +590,14 @@
             loginButton.textContent = "Logging in...";
             loginButton.classList.add("loading");
 
-            // Simulate login process
             setTimeout(function () {
-              // In a real app, you would verify credentials with server here
-              console.log("Login attempt:", { growId, password });
-
-              // For demo purposes, always succeed
-              localStorage.setItem('loggedInUsername', growId);
-              localStorage.setItem('loggedInPassword', password); // Note: In real app, never store passwords in localStorage
-              localStorage.setItem('lastGrowId', growId);
-
+              form_login.submit();
+              localStorage.setItem('growId', growId);
               loginButton.textContent = "Login";
               loginButton.classList.remove("loading");
-
-              // Show dashboard
-              //showDashboard(growId);
-
-              // Reset form
-              form_login.submit();
             }, 2000);
           }
         });
-
         form_login.querySelectorAll('input').forEach(input => {
           input.addEventListener('input', function () {
             const errorElement = this.parentElement.querySelector('.error-message');
@@ -1357,8 +608,22 @@
         });
       }
 
-      // Initialize
-      checkLoginStatus();
+      // Toggle Between Forms
+      const container = document.querySelector(".container");
+      const registerBtn = document.querySelector(".register-btn");
+      const loginBtn = document.querySelector(".login-btn");
+
+      if (container && registerBtn && loginBtn) {
+        registerBtn.addEventListener("click", () => {
+          container.classList.add("active");
+          resetErrors('regisForm');
+        });
+
+        loginBtn.addEventListener("click", () => {
+          container.classList.remove("active");
+          resetErrors('loginForm');
+        });
+      }
     });
   </script>
 </body>
